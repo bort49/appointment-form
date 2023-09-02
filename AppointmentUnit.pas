@@ -2827,7 +2827,7 @@ begin
 
 
                     if AppTAbleTIME2.ASString<>'' then
-                       begin //задано время окончания, значит надо закраcить все до времени окончания
+                       begin //set finish time so fill till that time
 
                        try
                        try
