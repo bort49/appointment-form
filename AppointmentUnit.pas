@@ -574,7 +574,7 @@ type
   private
     { Private declarations }
 
-    //for create icon in Windows tray
+    //РћРЅР° РЅСѓР¶РЅР°, С‡С‚Рѕ Р±С‹ РґР»СЏ С„РѕСЂРјС‹ СЃРѕР·РґР°РІР°Р»Р°СЃСЊ РёРєРѕРЅРєР° РІ С‚СЂРµРµ
     procedure CreateParams(var Params: TCreateParams); override;
 
   public
@@ -620,7 +620,7 @@ begin
       and  (InsertForm.ZajQuery.FieldBYNAme('SOST').AsString<>'3') and  (InsertForm.ZajQuery.FieldBYNAme('SOST').AsString<>'A') then
       begin
       n_dok:=InsertForm.ZajQuery.FieldBYNAme('N_DOK').AsString;
-      if my_dlg('Внимание!',PChar('Для клиента уже есть открытая заявка №'+n_dok+' от '+InsertForm.ZajQuery.FieldBYNAme('D_O').AsString+'.'+#13+'Все равно создать новую?'),clYellow)=FAlse then
+      if my_dlg('Р’РЅРёРјР°РЅРёРµ!',PChar('Р”Р»СЏ РєР»РёРµРЅС‚Р° СѓР¶Рµ РµСЃС‚СЊ РѕС‚РєСЂС‹С‚Р°СЏ Р·Р°СЏРІРєР° в„–'+n_dok+' РѕС‚ '+InsertForm.ZajQuery.FieldBYNAme('D_O').AsString+'.'+#13+'Р’СЃРµ СЂР°РІРЅРѕ СЃРѕР·РґР°С‚СЊ РЅРѕРІСѓСЋ?'),clYellow)=FAlse then
          begin
          ZajavkiForm.Show;
          if ZajavkiForm.Zaj_oQuery.Locate('N_DOK',n_dok,[])=True then
@@ -629,7 +629,7 @@ begin
             AppointmentForm.Close;
             end
          else
-            my_messageTime('Внимание!','Документ не найден.',clYellow,3000);
+            my_messageTime('Р’РЅРёРјР°РЅРёРµ!','Р”РѕРєСѓРјРµРЅС‚ РЅРµ РЅР°Р№РґРµРЅ.',clYellow,3000);
 
 
          exit;
@@ -666,7 +666,7 @@ begin
   Form1.LastNumMX.AsString:=Mx;
   Form1.LastNumKOD.AsString:='N_ZAJ';
   if Form1.LastNum.GoToKey=False then
-     Form1.LastNum.AppendRecord([Mx,'N_ZAJ',FormatDateTime('yy',date)+MX+'J'+'00000','Номер заявки']);
+     Form1.LastNum.AppendRecord([Mx,'N_ZAJ',FormatDateTime('yy',date)+MX+'J'+'00000','РќРѕРјРµСЂ Р·Р°СЏРІРєРё']);
 
   if StrToInt(FormatDateTime('yy',date))>StrToInt(Copy(Form1.LastNumPEREM.AsString,1,2)) then
      begin
@@ -678,12 +678,12 @@ begin
 
   if (StrToInt(FormatDateTime('yy',date))<StrToInt(Copy(Form1.LastNumPEREM.AsString,1,2))) then
      begin
-     my_messageTime('Внимание','На Вашем компьютере установлена неправильная дата.'+#13+'Так работать нельзя!', clYellow,20000);
+     my_messageTime('Р’РЅРёРјР°РЅРёРµ','РќР° Р’Р°С€РµРј РєРѕРјРїСЊСЋС‚РµСЂРµ СѓСЃС‚Р°РЅРѕРІР»РµРЅР° РЅРµРїСЂР°РІРёР»СЊРЅР°СЏ РґР°С‚Р°.'+#13+'РўР°Рє СЂР°Р±РѕС‚Р°С‚СЊ РЅРµР»СЊР·СЏ!', clYellow,20000);
      exit;
      end;
 
 
-   // Заносим в ZAJ_O
+   // Р—Р°РЅРѕСЃРёРј РІ ZAJ_O
    InsertForm.ZajQuery.SQL.Clear;
    InsertForm.ZajQuery.SQL.Add('INSERT INTO "'+Path_base+'zakaz\20'+FormatDateTime('yy',date)+'\zaj_o.dbf" '+
                                '(IO,N_DOK,K_KL,KLIENT,D_O,KURS_D,V_UE,K_SKID_D,SKIDKA_D,SO,CAR,N_CAR,K_SKID_R,SKIDKA_R,C_NCH,NSP,NDS,OKRUGL,TIME_O,MANAGER,KOD_SUBD,OTDEL,CAR_N_ZAP,HIDDEN,RUB_CL) VALUES '+
@@ -734,7 +734,7 @@ begin
        end
     else
        begin
-       my_messageTime('Внимание!','Клиент не найден в справочнике.',clYellow,3000);
+       my_messageTime('Р’РЅРёРјР°РЅРёРµ!','РљР»РёРµРЅС‚ РЅРµ РЅР°Р№РґРµРЅ РІ СЃРїСЂР°РІРѕС‡РЅРёРєРµ.',clYellow,3000);
        exit;
        end;
 
@@ -764,14 +764,14 @@ else
        end
     else
        begin
-       my_messageTime('Внимание!','Клиент не найден в справочнике.',clYellow,3000);
+       my_messageTime('Р’РЅРёРјР°РЅРёРµ!','РљР»РёРµРЅС‚ РЅРµ РЅР°Р№РґРµРЅ РІ СЃРїСЂР°РІРѕС‡РЅРёРєРµ.',clYellow,3000);
        exit;
        end;
 
     end
  else
      begin
-     my_messageTime('Внимание!','Клиент не найден в справочнике.',clYellow,3000);
+     my_messageTime('Р’РЅРёРјР°РЅРёРµ!','РљР»РёРµРЅС‚ РЅРµ РЅР°Р№РґРµРЅ РІ СЃРїСЂР°РІРѕС‡РЅРёРєРµ.',clYellow,3000);
      exit;
      end;
 
@@ -811,7 +811,7 @@ else
    ZajavkiForm.Zaj_oTable.IndexName:='N_DOK';
    if ZajavkiForm.Zaj_oTable.FindKey([n_dok])=True then
       begin
-      my_messageTime('Внимание!',PChar('Запрос отклонен! Документ с номером '+n_dok+' уже есть. Сообщите старшему администратору.'),clYellow,30000);
+      my_messageTime('Р’РЅРёРјР°РЅРёРµ!',PChar('Р—Р°РїСЂРѕСЃ РѕС‚РєР»РѕРЅРµРЅ! Р”РѕРєСѓРјРµРЅС‚ СЃ РЅРѕРјРµСЂРѕРј '+n_dok+' СѓР¶Рµ РµСЃС‚СЊ. РЎРѕРѕР±С‰РёС‚Рµ СЃС‚Р°СЂС€РµРјСѓ Р°РґРјРёРЅРёСЃС‚СЂР°С‚РѕСЂСѓ.'),clYellow,30000);
       exit;
       end;
 
@@ -823,9 +823,9 @@ else
    else
    if Install.ComboBox3.ItemIndex=2 then InsertForm.ZajQuery.ParamByName('OKRUGL').AsFloat:=0
    else
-   if Install.ComboBox3.ItemIndex=3 then InsertForm.ZajQuery.ParamByName('OKRUGL').AsFloat:=5 //до десятков рублей
+   if Install.ComboBox3.ItemIndex=3 then InsertForm.ZajQuery.ParamByName('OKRUGL').AsFloat:=5 //РґРѕ РґРµСЃСЏС‚РєРѕРІ СЂСѓР±Р»РµР№
    else
-   if Install.ComboBox3.ItemIndex=4 then InsertForm.ZajQuery.ParamByName('OKRUGL').AsFloat:=6 //до сотен рублей
+   if Install.ComboBox3.ItemIndex=4 then InsertForm.ZajQuery.ParamByName('OKRUGL').AsFloat:=6 //РґРѕ СЃРѕС‚РµРЅ СЂСѓР±Р»РµР№
    else InsertForm.ZajQuery.ParamByName('OKRUGL').AsFloat:=2;
 
    try
@@ -854,7 +854,7 @@ else
       end
    else
       begin
-      my_messageTime('Внмание!','Присвойте автомобиль клиенту в справочнике',clYellow,30000);
+      my_messageTime('Р’РЅРјР°РЅРёРµ!','РџСЂРёСЃРІРѕР№С‚Рµ Р°РІС‚РѕРјРѕР±РёР»СЊ РєР»РёРµРЅС‚Сѓ РІ СЃРїСЂР°РІРѕС‡РЅРёРєРµ',clYellow,30000);
       exit;
       end;
 
@@ -919,29 +919,29 @@ else
                                                 InsertForm.ZajQuery.Params.ParamByName('K_SKID_R').AsString,
                                                 InsertForm.ZajQuery.Params.ParamByName('SKIDKA_R').AsFloat,
                                                 InsertForm.ZajQuery.Params.ParamByName('C_NCH').AsFloat,
-                                                NULL,//pr_pech
-                                                NULL,//block
+                                                NULL, //pr_pech
+                                                NULL, //block
                                                 NULL, //n_recl
                                                 NULL, //pr_otvet
                                                 NULL, //prober
-                                                NULL,//comm1
-                                                NULL,//comm2
-                                                NULL,//kod_subd
+                                                NULL, //comm1
+                                                NULL, //comm2
+                                                NULL, //kod_subd
                                                 InsertForm.ZajQuery.ParamByName('NSP').AsFloat,
                                                 InsertForm.ZajQuery.ParamByName('NDS').AsFloat,
                                                 InsertForm.ZajQuery.ParamByName('OKRUGL').AsFloat,   //S_OKRUGL - N -1
-                                                NULL,//N_fac
-                                                NULL,//D_PR
+                                                NULL, //N_fac
+                                                NULL, //D_PR
                                                 FormatDateTime('hh:nn',now),
-                                                NULL,//car_in
-                                                NULL,//hidden
-                                                NULL,//d_end
-                                                NULL,//t_end
-                                                NULL,// k_plat
+                                                NULL, //car_in
+                                                NULL, //hidden
+                                                NULL, //d_end
+                                                NULL, //t_end
+                                                NULL, // k_plat
                                                 InsertForm.ZajQuery.Params.ParamByName('MANAGER').AsString, //manager
                                                 NULL, //otdel
-                                                NULL, //мастер откр
-                                                NULL, //мастер закр
+                                                NULL, //РјР°СЃС‚РµСЂ РѕС‚РєСЂ
+                                                NULL, //РјР°СЃС‚РµСЂ Р·Р°РєСЂ
                                                 car_n_zap,
                                                 Date,
                                                 FormatDateTime('hh:nn',now),
@@ -951,7 +951,7 @@ else
                                                 NULL,
                                                 NULL,
                                                 NULL,
-                                                NULL,//OKRUGL - c -1
+                                                NULL, //OKRUGL - c -1
                                                 NULL, //inc
                                                 InsertForm.ZajQuery.Params.ParamByName('RUB_CL').AsString]);
 
@@ -973,7 +973,7 @@ else
    if ZajavkiForm.Zaj_oQuery.Locate('N_DOK',n_dok,[])=True then
       ZajavkiForm.DBGrid2DBLClick(ZajavkiForm.DBGrid2)
    else
-      my_messageTime('Внимание!','Документ не найден.',clYellow,3000);
+      my_messageTime('Р’РЅРёРјР°РЅРёРµ!','Р”РѕРєСѓРјРµРЅС‚ РЅРµ РЅР°Р№РґРµРЅ.',clYellow,3000);
 
 
    AppointmentForm.Close;
@@ -1010,7 +1010,7 @@ end;
 
 
 
-//показываем иконку окна в трее
+//РїРѕРєР°Р·С‹РІР°РµРј РёРєРѕРЅРєСѓ РѕРєРЅР° РІ С‚СЂРµРµ
 procedure TAppointmentForm.CreateParams(var Params: TCreateParams);
 begin
   inherited CreateParams(Params);
@@ -1044,13 +1044,13 @@ with appointmentForm do
   for i:=1 to 6 do
       MonthTable.AppendRecord([]);
 
-  //определяем день недели первого числа выбранного месяца
+  //РѕРїСЂРµРґРµР»СЏРµРј РґРµРЅСЊ РЅРµРґРµР»Рё РїРµСЂРІРѕРіРѕ С‡РёСЃР»Р° РІС‹Р±СЂР°РЅРЅРѕРіРѕ РјРµСЃСЏС†Р°
   manth_number:=IntToStr(manth);
   if Length(manth_number)=1 then manth_number:='0'+manth_number;
   year:=IntToStr(_year);
 
 
-                                  //Получаем дату в формате YYYYMMDD
+                                  //РџРѕР»СѓС‡Р°РµРј РґР°С‚Сѓ РІ С„РѕСЂРјР°С‚Рµ YYYYMMDD
   first_day_of_week:=DayOfTheWeek(year+manth_number+'01');
 
 
@@ -1058,13 +1058,13 @@ with appointmentForm do
   count_month_day:=DaysInAMonth(_year,manth);
 
 
-  if first_day_of_week='Понедельник' then first:=1;
-  if first_day_of_week='Вторник' then first:=2;
-  if first_day_of_week='Среда' then first:=3;
-  if first_day_of_week='Четверг' then first:=4;
-  if first_day_of_week='Пятница' then first:=5;
-  if first_day_of_week='Суббота' then first:=6;
-  if first_day_of_week='Воскресенье' then first:=7;
+  if first_day_of_week='РџРѕРЅРµРґРµР»СЊРЅРёРє' then first:=1;
+  if first_day_of_week='Р’С‚РѕСЂРЅРёРє' then first:=2;
+  if first_day_of_week='РЎСЂРµРґР°' then first:=3;
+  if first_day_of_week='Р§РµС‚РІРµСЂРі' then first:=4;
+  if first_day_of_week='РџСЏС‚РЅРёС†Р°' then first:=5;
+  if first_day_of_week='РЎСѓР±Р±РѕС‚Р°' then first:=6;
+  if first_day_of_week='Р’РѕСЃРєСЂРµСЃРµРЅСЊРµ' then first:=7;
 
 
   MonthTable.First;
@@ -1122,7 +1122,7 @@ begin
 
   Form1.Spr00.Open;
   Form1.Spr00.IndexName:='NAIM';
-  Form1.Spr00.SetRange('30'+'','30'+'яя');
+  Form1.Spr00.SetRange('30'+'','30'+'СЏСЏ');
   Form1.Spr00.First;
   while Form1.Spr00.Eof=FAlse do
         begin
@@ -1132,14 +1132,14 @@ begin
 
 
 
- //определяем день недели первого числа выбранного месяца
+ //РѕРїСЂРµРґРµР»СЏРµРј РґРµРЅСЊ РЅРµРґРµР»Рё РїРµСЂРІРѕРіРѕ С‡РёСЃР»Р° РІС‹Р±СЂР°РЅРЅРѕРіРѕ РјРµСЃСЏС†Р°
   manth_number:=IntToStr(manth);
   if Length(manth_number)=1 then manth_number:='0'+manth_number;
   year:=IntToStr(_year);
 
 
 
-                                  //Получаем дату в формате YYYYMMDD
+                                  //РџРѕР»СѓС‡Р°РµРј РґР°С‚Сѓ РІ С„РѕСЂРјР°С‚Рµ YYYYMMDD
   first_day_of_week:=DayOfTheWeek(year+manth_number+'01');
 
 
@@ -1164,15 +1164,15 @@ begin
 
 
 
-  if first_day_of_week='Понедельник' then first:=1;
-  if first_day_of_week='Вторник' then first:=3;
-  if first_day_of_week='Среда' then first:=5;
-  if first_day_of_week='Четверг' then first:=7;
-  if first_day_of_week='Пятница' then first:=9;
-  if first_day_of_week='Суббота' then first:=11;
-  if first_day_of_week='Воскресенье' then first:=13;
+  if first_day_of_week='РџРѕРЅРµРґРµР»СЊРЅРёРє' then first:=1;
+  if first_day_of_week='Р’С‚РѕСЂРЅРёРє' then first:=3;
+  if first_day_of_week='РЎСЂРµРґР°' then first:=5;
+  if first_day_of_week='Р§РµС‚РІРµСЂРі' then first:=7;
+  if first_day_of_week='РџСЏС‚РЅРёС†Р°' then first:=9;
+  if first_day_of_week='РЎСѓР±Р±РѕС‚Р°' then first:=11;
+  if first_day_of_week='Р’РѕСЃРєСЂРµСЃРµРЅСЊРµ' then first:=13;
 
-  str:='ПнВтСрЧтПтСбВс';
+  str:='РџРЅР’С‚РЎСЂР§С‚РџС‚РЎР±Р’СЃ';
 
 
   MonthTablePosts.First;
@@ -1222,7 +1222,7 @@ begin
 
   Form1.Spr00.Open;
   Form1.Spr00.IndexName:='NAIM';
-  Form1.Spr00.SetRange('32'+'','32'+'яя');
+  Form1.Spr00.SetRange('32'+'','32'+'СЏСЏ');
   Form1.Spr00.First;
   while Form1.Spr00.Eof=FAlse do
         begin
@@ -1252,14 +1252,14 @@ begin
 
 
 
- //определяем день недели первого числа выбранного месяца
+ //РѕРїСЂРµРґРµР»СЏРµРј РґРµРЅСЊ РЅРµРґРµР»Рё РїРµСЂРІРѕРіРѕ С‡РёСЃР»Р° РІС‹Р±СЂР°РЅРЅРѕРіРѕ РјРµСЃСЏС†Р°
   manth_number:=IntToStr(manth);
   if Length(manth_number)=1 then manth_number:='0'+manth_number;
   year:=IntToStr(_year);
 
 
 
-                                  //Получаем дату в формате YYYYMMDD
+                                  //РџРѕР»СѓС‡Р°РµРј РґР°С‚Сѓ РІ С„РѕСЂРјР°С‚Рµ YYYYMMDD
   first_day_of_week:=DayOfTheWeek(year+manth_number+'01');
 
 
@@ -1284,15 +1284,15 @@ begin
 
 
 
-  if first_day_of_week='Понедельник' then first:=1;
-  if first_day_of_week='Вторник' then first:=3;
-  if first_day_of_week='Среда' then first:=5;
-  if first_day_of_week='Четверг' then first:=7;
-  if first_day_of_week='Пятница' then first:=9;
-  if first_day_of_week='Суббота' then first:=11;
-  if first_day_of_week='Воскресенье' then first:=13;
+  if first_day_of_week='РџРѕРЅРµРґРµР»СЊРЅРёРє' then first:=1;
+  if first_day_of_week='Р’С‚РѕСЂРЅРёРє' then first:=3;
+  if first_day_of_week='РЎСЂРµРґР°' then first:=5;
+  if first_day_of_week='Р§РµС‚РІРµСЂРі' then first:=7;
+  if first_day_of_week='РџСЏС‚РЅРёС†Р°' then first:=9;
+  if first_day_of_week='РЎСѓР±Р±РѕС‚Р°' then first:=11;
+  if first_day_of_week='Р’РѕСЃРєСЂРµСЃРµРЅСЊРµ' then first:=13;
 
-  str:='ПнВтСрЧтПтСбВс';
+  str:='РџРЅР’С‚РЎСЂР§С‚РџС‚РЎР±Р’СЃ';
 
 
   MonthTableStaff.First;
@@ -1343,7 +1343,7 @@ begin
 
     d_offTableSTO.Open;
     d_offTableSTO.IndexName:='KOD';
-    d_offTableSTO.SetRange(Copy(kod+'      ',1,6)+'',Copy(kod+'      ',1,6)+'яя');
+    d_offTableSTO.SetRange(Copy(kod+'      ',1,6)+'',Copy(kod+'      ',1,6)+'СЏСЏ');
 
     dsCAlendar.Holidays.Clear;
     d_offTableSTO.First;
@@ -1570,7 +1570,7 @@ begin
 
 
         if (carsQuery.RecordCount>1) and (finded=False) then
-           begin  //выбор машины
+           begin  //РІС‹Р±РѕСЂ РјР°С€РёРЅС‹
 
            ClientCarsListBox.Items.Clear;
            carsQuery.First;
@@ -1593,18 +1593,18 @@ begin
                  if Form1.Spr01.GoToKey then
                     str:=str+Copy(Trim(Form1.Spr01NAIM.AsString)+'                    ',1,20);
 
-                 str:=str+' Гос.№: '+UnCryptString(CarsQUERY.FieldByName('GOS_N').AsString,key1a,key2a);
+                 str:=str+' Р“РѕСЃ.в„–: '+UnCryptString(CarsQUERY.FieldByName('GOS_N').AsString,key1a,key2a);
 
                  ClientCarsListBox.Items.Add(str);
 
                  carsQuery.Next;
                  end;
 
-           PAnel10.Caption:='Выберите автомобиль';
+           PAnel10.Caption:='Р’С‹Р±РµСЂРёС‚Рµ Р°РІС‚РѕРјРѕР±РёР»СЊ';
            PAnel9.Visible:=True;
            end
         else
-           begin //заполняем
+           begin //Р·Р°РїРѕР»РЅСЏРµРј
            CarNumberMaskEdit.Text:=UnCryptString(CarsQUERY.FieldByName('GOS_N').AsString,key1a,key2a);
 
            CAr_n_zapLAbel.Caption:=CarsQUERY.FieldByName('N_ZAP').AsString;
@@ -1678,7 +1678,7 @@ with AppointmentForm do
 
      if SqlQuery1.FieldByNAme('DATE_APP').AsString<>'' then
         begin
-        if my_dlg('Внимание!',PChar('Для номера: '+TelMaskEditCountryCode.Text+'('+TelMaskEditCode.Text+')'+TelMaskEditNumber.Text+#13+'найдено записей: '+IntToStr(SqlQuery1.RecordCount)+#13+'Последняя запись на '+SqlQuery1.FieldByNAme('DATE_APP').AsString+' - '+SqlQuery1.FieldByNAme('FIO').AsString+#13+'Показать эту запись?'),clYellow)=True then
+        if my_dlg('Р’РЅРёРјР°РЅРёРµ!',PChar('Р”Р»СЏ РЅРѕРјРµСЂР°: '+TelMaskEditCountryCode.Text+'('+TelMaskEditCode.Text+')'+TelMaskEditNumber.Text+#13+'РЅР°Р№РґРµРЅРѕ Р·Р°РїРёСЃРµР№: '+IntToStr(SqlQuery1.RecordCount)+#13+'РџРѕСЃР»РµРґРЅСЏСЏ Р·Р°РїРёСЃСЊ РЅР° '+SqlQuery1.FieldByNAme('DATE_APP').AsString+' - '+SqlQuery1.FieldByNAme('FIO').AsString+#13+'РџРѕРєР°Р·Р°С‚СЊ СЌС‚Сѓ Р·Р°РїРёСЃСЊ?'),clYellow)=True then
            begin
            dsCAlendar1.Date:=SqlQuery1.FieldByNAme('DATE_APP').Value;
            dsCalendar1DateChange(dsCAlendar1,SqlQuery1.FieldByNAme('DATE_APP').Value-1,SqlQuery1.FieldByNAme('DATE_APP').Value);
@@ -1691,7 +1691,7 @@ with AppointmentForm do
 
         end
      else
-        my_messageTime('Внимание!','Ничего не найдено.',clYellow,3000);
+        my_messageTime('Р’РЅРёРјР°РЅРёРµ!','РќРёС‡РµРіРѕ РЅРµ РЅР°Р№РґРµРЅРѕ.',clYellow,3000);
 
      end;
 
@@ -1722,7 +1722,7 @@ with AppointmentForm do
 
      if SqlQuery1.FieldByNAme('DATE_APP').AsString<>'' then
         begin
-        if my_dlg('Внимание!',PChar('Для номера: '+CarNumberFindEdit.Text+#13+'найдено записей: '+IntToStr(SqlQuery1.RecordCount)+#13+'Последняя запись на '+SqlQuery1.FieldByNAme('DATE_APP').AsString+' - '+SqlQuery1.FieldByNAme('FIO').AsString+#13+'Показать эту запись?'),clYellow)=True then
+        if my_dlg('Р’РЅРёРјР°РЅРёРµ!',PChar('Р”Р»СЏ РЅРѕРјРµСЂР°: '+CarNumberFindEdit.Text+#13+'РЅР°Р№РґРµРЅРѕ Р·Р°РїРёСЃРµР№: '+IntToStr(SqlQuery1.RecordCount)+#13+'РџРѕСЃР»РµРґРЅСЏСЏ Р·Р°РїРёСЃСЊ РЅР° '+SqlQuery1.FieldByNAme('DATE_APP').AsString+' - '+SqlQuery1.FieldByNAme('FIO').AsString+#13+'РџРѕРєР°Р·Р°С‚СЊ СЌС‚Сѓ Р·Р°РїРёСЃСЊ?'),clYellow)=True then
            begin
            dsCAlendar1.Date:=SqlQuery1.FieldByNAme('DATE_APP').Value;
            dsCalendar1DateChange(dsCAlendar1,SqlQuery1.FieldByNAme('DATE_APP').Value-1,SqlQuery1.FieldByNAme('DATE_APP').Value);
@@ -1735,7 +1735,7 @@ with AppointmentForm do
 
         end
      else
-        my_messageTime('Внимание!','Ничего не найдено.',clYellow,3000);
+        my_messageTime('Р’РЅРёРјР°РЅРёРµ!','РќРёС‡РµРіРѕ РЅРµ РЅР°Р№РґРµРЅРѕ.',clYellow,3000);
 
      end;
 
@@ -1751,7 +1751,7 @@ begin
 with AppointmentForm do
 begin
 
-     LAbel13.Caption:='Запись на '+FormatDAteTime('MMMM DD',Table.FieldByName('DATE_APP').Value)+'-е, '+DayOfTheWeek(FormatDateTime('YYYYMMDD',Table.FieldByName('DATE_APP').VAlue));
+     LAbel13.Caption:='Р—Р°РїРёСЃСЊ РЅР° '+FormatDAteTime('MMMM DD',Table.FieldByName('DATE_APP').Value)+'-Рµ, '+DayOfTheWeek(FormatDateTime('YYYYMMDD',Table.FieldByName('DATE_APP').VAlue));
 
      StartTimeMaskEdit.ReadOnly:=FAlse;
 
@@ -1929,19 +1929,19 @@ begin
 
   IniFile:=TIniFile.Create(path_base+'\PEREM\appoint.ini');
 
-  MonMaskEdit.Text:=IniFile.ReadString('WorkTime','1','с 08:00 до 20:00');
-  TueMaskEdit.Text:=IniFile.ReadString('WorkTime','2','с 08:00 до 20:00');
-  WedMaskEdit.Text:=IniFile.ReadString('WorkTime','3','с 08:00 до 20:00');
-  ThuMaskEdit.Text:=IniFile.ReadString('WorkTime','4','с 08:00 до 20:00');
-  FriMaskEdit.Text:=IniFile.ReadString('WorkTime','5','с 08:00 до 20:00');
-  SatMaskEdit.Text:=IniFile.ReadString('WorkTime','6','с 08:00 до 20:00');
-  SunMaskEdit.Text:=IniFile.ReadString('WorkTime','7','с 08:00 до 20:00');
+  MonMaskEdit.Text:=IniFile.ReadString('WorkTime','1','СЃ 08:00 РґРѕ 20:00');
+  TueMaskEdit.Text:=IniFile.ReadString('WorkTime','2','СЃ 08:00 РґРѕ 20:00');
+  WedMaskEdit.Text:=IniFile.ReadString('WorkTime','3','СЃ 08:00 РґРѕ 20:00');
+  ThuMaskEdit.Text:=IniFile.ReadString('WorkTime','4','СЃ 08:00 РґРѕ 20:00');
+  FriMaskEdit.Text:=IniFile.ReadString('WorkTime','5','СЃ 08:00 РґРѕ 20:00');
+  SatMaskEdit.Text:=IniFile.ReadString('WorkTime','6','СЃ 08:00 РґРѕ 20:00');
+  SunMaskEdit.Text:=IniFile.ReadString('WorkTime','7','СЃ 08:00 РґРѕ 20:00');
 
   ScaleComboBox.ItemIndex:=StrToInt(IniFile.ReadString('Scale','value','0'));
 
   IniFile.Free;
 
-  LAbel2.Caption:='Запись на '+FormatDAteTime('MMMM DD',dsCAlendar1.DAte)+'-е, '+DayOfTheWeek(FormatDateTime('YYYYMMDD',dsCAlendar1.DAte));
+  LAbel2.Caption:='Р—Р°РїРёСЃСЊ РЅР° '+FormatDAteTime('MMMM DD',dsCAlendar1.DAte)+'-Рµ, '+DayOfTheWeek(FormatDateTime('YYYYMMDD',dsCAlendar1.DAte));
 
 
   dsCalendar1.Date:=DAte;
@@ -1971,37 +1971,37 @@ begin
 
   fill_sto_days_off(dsCAlendar1,'STO');
 
-  if SunMaskEdit.Text='с   :   до   :  ' then
+  if SunMaskEdit.Text='СЃ   :   РґРѕ   :  ' then
      SunMaskEdit.Color:=$00AAAAFF
   else
      SunMaskEdit.Color:=Form1.PAnel1.Color;
 
-  if SatMaskEdit.Text='с   :   до   :  ' then
+  if SatMaskEdit.Text='СЃ   :   РґРѕ   :  ' then
      SatMaskEdit.Color:=$00AAAAFF
   else
      SatMaskEdit.Color:=Form1.PAnel1.Color;
 
-  if MonMaskEdit.Text='с   :   до   :  ' then
+  if MonMaskEdit.Text='СЃ   :   РґРѕ   :  ' then
      MonMaskEdit.Color:=$00AAAAFF
   else
      MonMaskEdit.Color:=Form1.PAnel1.Color;
 
-  if TueMaskEdit.Text='с   :   до   :  ' then
+  if TueMaskEdit.Text='СЃ   :   РґРѕ   :  ' then
      TueMaskEdit.Color:=$00AAAAFF
   else
      TueMaskEdit.Color:=Form1.PAnel1.Color;
 
-  if WedMaskEdit.Text='с   :   до   :  ' then
+  if WedMaskEdit.Text='СЃ   :   РґРѕ   :  ' then
      WedMaskEdit.Color:=$00AAAAFF
   else
      WedMaskEdit.Color:=Form1.PAnel1.Color;
 
-  if ThuMaskEdit.Text='с   :   до   :  ' then
+  if ThuMaskEdit.Text='СЃ   :   РґРѕ   :  ' then
      ThuMaskEdit.Color:=$00AAAAFF
   else
      ThuMaskEdit.Color:=Form1.PAnel1.Color;
 
-  if FriMaskEdit.Text='с   :   до   :  ' then
+  if FriMaskEdit.Text='СЃ   :   РґРѕ   :  ' then
      FriMaskEdit.Color:=$00AAAAFF
   else
      FriMaskEdit.Color:=Form1.PAnel1.Color;
@@ -2106,7 +2106,7 @@ begin
 
   if AppointmentForm.Showing=True then
      begin
-     LAbel2.Caption:='Запись на '+FormatDAteTime('MMMM DD',dsCAlendar1.DAte)+'-е, '+DayOfTheWeek(FormatDateTime('YYYYMMDD',dsCAlendar1.DAte));
+     LAbel2.Caption:='Р—Р°РїРёСЃСЊ РЅР° '+FormatDAteTime('MMMM DD',dsCAlendar1.DAte)+'-Рµ, '+DayOfTheWeek(FormatDateTime('YYYYMMDD',dsCAlendar1.DAte));
      BitBtn1.Click;
      end;
 
@@ -2131,7 +2131,7 @@ begin
 
      d_offTableSTO.Open;
      d_offTableSTO.IndexName:='KOD';
-     d_offTableSTO.SetRange('STO   '+'','STO   '+'яя');
+     d_offTableSTO.SetRange('STO   '+'','STO   '+'СЏСЏ');
 
      fill_sto_days_off(dsCalendar1,'STO');
 
@@ -2139,8 +2139,8 @@ begin
 
 
 
-  Tab2.Caption:='   Все записи на '+Copy(LAbel2.Caption,11,100)+'   ';
-  Tab4.Caption:='   Все записи на '+FormatDateTime('mmmm yyyy',dsCalendar1.Date)+'   ';
+  Tab2.Caption:='   Р’СЃРµ Р·Р°РїРёСЃРё РЅР° '+Copy(LAbel2.Caption,11,100)+'   ';
+  Tab4.Caption:='   Р’СЃРµ Р·Р°РїРёСЃРё РЅР° '+FormatDateTime('mmmm yyyy',dsCalendar1.Date)+'   ';
 end;
 
 procedure TAppointmentForm.ScaleComboBoxChange(Sender: TObject);
@@ -2162,7 +2162,7 @@ begin
      end;
 
 
-  if MonMaskEdit.Text='с   :   до   :  ' then
+  if MonMaskEdit.Text='СЃ   :   РґРѕ   :  ' then
      MonMaskEdit.Color:=$00AAAAFF
   else
      MonMaskEdit.Color:=Form1.Panel2.Color;
@@ -2175,7 +2175,7 @@ begin
   if SatMaskEdit.Focused then
      SunMaskEdit.Text:=MonMaskEdit.Text;
 
-  if SatMaskEdit.Text='с   :   до   :  ' then
+  if SatMaskEdit.Text='СЃ   :   РґРѕ   :  ' then
      SatMaskEdit.Color:=$00AAAAFF
   else
      SatMaskEdit.Color:=Form1.Panel2.Color;
@@ -2204,7 +2204,7 @@ begin
      end;
 
 
-  if TueMaskEdit.Text='с   :   до   :  ' then
+  if TueMaskEdit.Text='СЃ   :   РґРѕ   :  ' then
      TueMaskEdit.Color:=$00AAAAFF
   else
      TueMaskEdit.Color:=Form1.Panel2.Color;
@@ -2333,7 +2333,7 @@ begin
        with DayTable.FieldDefs.AddFieldDef do
             begin
 
-            //первое доступное время
+            //РїРµСЂРІРѕРµ РґРѕСЃС‚СѓРїРЅРѕРµ РІСЂРµРјСЏ
             case day_of_week of
                1: begin
                   Name := 'H'+Copy(MonMaskEdit.Text,3,2);
@@ -2386,7 +2386,7 @@ begin
             last_name_time:=Copy(NewName,2,2);
             end;
 
-                 //+ 1/2 часа
+                 //+ 1/2 С‡Р°СЃР°
                  if ScaleComboBox.ItemIndex=1 then
                     with DayTable.FieldDefs.AddFieldDef do
                          begin
@@ -2395,7 +2395,7 @@ begin
                          Size := 5;
                          end;
 
-                 //+ 1/4 часа
+                 //+ 1/4 С‡Р°СЃР°
                  if ScaleComboBox.ItemIndex=2 then
                     begin
                     with DayTable.FieldDefs.AddFieldDef do
@@ -2424,7 +2424,7 @@ begin
 
 
 
-            //следующие до закрытия
+            //СЃР»РµРґСѓСЋС‰РёРµ РґРѕ Р·Р°РєСЂС‹С‚РёСЏ
             for  i:=1 to 100 do
                  begin
 
@@ -2442,7 +2442,7 @@ begin
 
                 if NewName=end_time then break;
 
-                 //час
+                 //С‡Р°СЃ
                  with DayTable.FieldDefs.AddFieldDef do
                       begin
                       Name := NewName;
@@ -2450,7 +2450,7 @@ begin
                       Size := 5;
                       end;
 
-                 //+ 1/2 часа
+                 //+ 1/2 С‡Р°СЃР°
                  if ScaleComboBox.ItemIndex=1 then
                     with DayTable.FieldDefs.AddFieldDef do
                          begin
@@ -2459,7 +2459,7 @@ begin
                          Size := 5;
                          end;
 
-                 //+ 1/4 часа
+                 //+ 1/4 С‡Р°СЃР°
                  if ScaleComboBox.ItemIndex=2 then
                     begin
                     with DayTable.FieldDefs.AddFieldDef do
@@ -2558,7 +2558,7 @@ begin
      AppTAble.Reindex;
      AppTAble.Close;
 
-     //В NY еще добавляем
+     //Р’ NY РµС‰Рµ РґРѕР±Р°РІР»СЏРµРј
      if FileExists(path_base+'HIST\NY\apptable.dbf')=False then
         begin
         AppTAble_ForCreate.TableName:=path_base+'HIST\NY\apptable.dbf';
@@ -2591,20 +2591,20 @@ begin
 
   Form1.Spr00.Open;
   Form1.Spr00.IndexName:='NAIM';
-  Form1.Spr00.SetRange('30'+'','30'+'яя');
+  Form1.Spr00.SetRange('30'+'','30'+'СЏСЏ');
   if Form1.Spr00.RecordCount=0 then
      begin
-     my_messageTime('Внимание!','Задайте ресурсы автосервиса в "Общем справочнике".',clYellow,5000);
+     my_messageTime('Р’РЅРёРјР°РЅРёРµ!','Р—Р°РґР°Р№С‚Рµ СЂРµСЃСѓСЂСЃС‹ Р°РІС‚РѕСЃРµСЂРІРёСЃР° РІ "РћР±С‰РµРј СЃРїСЂР°РІРѕС‡РЅРёРєРµ".',clYellow,5000);
      exit;
      end;
 
   DAyTAble.Close;
 
 
-  //создаем дневную таблицу
+  //СЃРѕР·РґР°РµРј РґРЅРµРІРЅСѓСЋ С‚Р°Р±Р»РёС†Сѓ
   if createDayTableproc()=False then
      begin
-     my_messageTime('Внимание!','Ошибка создания временного файла.',clYellow,5000);
+     my_messageTime('Р’РЅРёРјР°РЅРёРµ!','РћС€РёР±РєР° СЃРѕР·РґР°РЅРёСЏ РІСЂРµРјРµРЅРЅРѕРіРѕ С„Р°Р№Р»Р°.',clYellow,5000);
      exit;
      end;
 
@@ -2614,7 +2614,7 @@ begin
 
   try
   DayTable.Fields[0].Visible:=False;
-  DayTable.Fields[1].DisplayLabel:='Список постов:';
+  DayTable.Fields[1].DisplayLabel:='РЎРїРёСЃРѕРє РїРѕСЃС‚РѕРІ:';
 
   for i:=2 to 100 do
       begin
@@ -2670,21 +2670,21 @@ begin
 
 
 
-  //заполняем дневную таблицу по рабочему справочнику (ресурсы автосервиса)
+  //Р·Р°РїРѕР»РЅСЏРµРј РґРЅРµРІРЅСѓСЋ С‚Р°Р±Р»РёС†Сѓ РїРѕ СЂР°Р±РѕС‡РµРјСѓ СЃРїСЂР°РІРѕС‡РЅРёРєСѓ (СЂРµСЃСѓСЂСЃС‹ Р°РІС‚РѕСЃРµСЂРІРёСЃР°)
   Form1.Spr00.First;
 
   StoPostComboBox.Items.Clear;
 
   ResourceItemsComboBox.Items.Clear;
-  ResourceItemsComboBox.Items.Add('ВСЕ ресурсы СТО');
-  ResourceItemsComboBox.Items.Add('Персонал СТО');
-  ResourceItemsComboBox.Items.Add('Нерабочие дни СТО');
+  ResourceItemsComboBox.Items.Add('Р’РЎР• СЂРµСЃСѓСЂСЃС‹ РЎРўРћ');
+  ResourceItemsComboBox.Items.Add('РџРµСЂСЃРѕРЅР°Р» РЎРўРћ');
+  ResourceItemsComboBox.Items.Add('РќРµСЂР°Р±РѕС‡РёРµ РґРЅРё РЎРўРћ');
 
   WorkPostsComboBox.Items.Clear;
-  WorkPostsComboBox.Items.Add('Все ресурсы СТО');
+  WorkPostsComboBox.Items.Add('Р’СЃРµ СЂРµСЃСѓСЂСЃС‹ РЎРўРћ');
 
   AllPostsComboBox.Items.Clear;
-  AllPostsComboBox.Items.Add('Все ресурсы СТО');
+  AllPostsComboBox.Items.Add('Р’СЃРµ СЂРµСЃСѓСЂСЃС‹ РЎРўРћ');
 
   while Form1.Spr00.Eof=False do
         begin
@@ -2715,7 +2715,7 @@ begin
      else DBGrid1.RowLines:=2;
 
 
-  //заполняем занятое и свободное время
+  //Р·Р°РїРѕР»РЅСЏРµРј Р·Р°РЅСЏС‚РѕРµ Рё СЃРІРѕР±РѕРґРЅРѕРµ РІСЂРµРјСЏ
 
   DAtaSource2.Enabled:=False;
 
@@ -2730,7 +2730,7 @@ begin
            begin
 
            if holiday_key=True then
-              begin  //СТО не работает
+              begin  //РЎРўРћ РЅРµ СЂР°Р±РѕС‚Р°РµС‚
               for i:=2 to DAyTAble.Fields.Count-1 do
                   begin
                   DAyTAble.Edit;
@@ -2741,7 +2741,7 @@ begin
               end;
 
 
-        d_offTable.Open;  //пост не работает
+        d_offTable.Open;  //РїРѕСЃС‚ РЅРµ СЂР°Р±РѕС‚Р°РµС‚
         d_offTable.Setrange('','');
         d_offTable.IndexName:='KOD';
         d_offTable.SetKey;
@@ -2757,7 +2757,7 @@ begin
                end;
 
 
-        AppTAble.SetRange(FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+DAyTAble.FieldByName('POSTCODE').AsString+'',FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+DAyTAble.FieldByName('POSTCODE').AsString+'яя');
+        AppTAble.SetRange(FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+DAyTAble.FieldByName('POSTCODE').AsString+'',FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+DAyTAble.FieldByName('POSTCODE').AsString+'СЏСЏ');
         AppTAble.First;
         gos_n:='';
         while AppTAble.Eof=FAlse do
@@ -2789,7 +2789,7 @@ begin
                        try
                        if DAyTAble.FieldByNAme(pole).ASString='' then
                           begin
-                          gos_n:='№'+Copy(remove_all_except_digits(UnCryptString(AppTAbleGOS_N.ASString,key1c,key2c)),1,3);
+                          gos_n:='в„–'+Copy(remove_all_except_digits(UnCryptString(AppTAbleGOS_N.ASString,key1c,key2c)),1,3);
                           if trim(AppTAbleN_zaj.ASString)<>'' then
                              gos_n:='+'+gos_n;
 
@@ -2827,7 +2827,7 @@ begin
 
 
                     if AppTAbleTIME2.ASString<>'' then
-                       begin //set finish time so fill till that time
+                       begin //Р·Р°РґР°РЅРѕ РІСЂРµРјСЏ РѕРєРѕРЅС‡Р°РЅРёСЏ, Р·РЅР°С‡РёС‚ РЅР°РґРѕ Р·Р°РєСЂР°cРёС‚СЊ РІСЃРµ РґРѕ РІСЂРµРјРµРЅРё РѕРєРѕРЅС‡Р°РЅРёСЏ
 
                        try
                        try
@@ -2843,7 +2843,7 @@ begin
 
 
 
-                       inc(col_index1);// т.к. начинаем со следующей колонки, в этой уже все проставили выше
+                       inc(col_index1);// С‚.Рє. РЅР°С‡РёРЅР°РµРј СЃРѕ СЃР»РµРґСѓСЋС‰РµР№ РєРѕР»РѕРЅРєРё, РІ СЌС‚РѕР№ СѓР¶Рµ РІСЃРµ РїСЂРѕСЃС‚Р°РІРёР»Рё РІС‹С€Рµ
                        while col_index1<col_index2 do
                              begin
 
@@ -2900,7 +2900,7 @@ begin
                        end;
 
 
-                    end; //не UDL
+                    end; //РЅРµ UDL
 
 
                  AppTAble.Next;
@@ -2913,10 +2913,10 @@ begin
 
   AppTAble.Open;
   AppTAble.IndexName:='DATE_APP1';
-  AppTAble.SetRange(FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+''+'',FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+'"'+'яя');
+  AppTAble.SetRange(FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+''+'',FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+'"'+'СЏСЏ');
   AppTAble.First;
 
-  //раскрашиваем по одинаковому времени
+  //СЂР°СЃРєСЂР°С€РёРІР°РµРј РїРѕ РѕРґРёРЅР°РєРѕРІРѕРјСѓ РІСЂРµРјРµРЅРё
   last_time:=AppTableTIME1.AsString;
   Last_color:='';
   AppTAble.Next;
@@ -2971,13 +2971,13 @@ begin
 
      AppTAbleMonth.Open;
      AppTAbleMonth.IndexName:='DATE_APP1';
-     AppTAbleMonth.SetRange(FormatDateTime('YYYYMM',dsCAlendar1.DAte)+'01'+''+'',FormatDateTime('YYYYMM',dsCAlendar1.DAte)+'31'+'"'+'яя');
+     AppTAbleMonth.SetRange(FormatDateTime('YYYYMM',dsCAlendar1.DAte)+'01'+''+'',FormatDateTime('YYYYMM',dsCAlendar1.DAte)+'31'+'"'+'СЏСЏ');
      AppTAbleMonth.First;
 
 
 
 
-  Label27.Caption:='Персонал СТО на '+FormatDAteTime('MMMM DD',dsCAlendar1.DAte)+'-е, '+DayOfTheWeek(FormatDateTime('YYYYMMDD',dsCAlendar1.DAte));
+  Label27.Caption:='РџРµСЂСЃРѕРЅР°Р» РЎРўРћ РЅР° '+FormatDAteTime('MMMM DD',dsCAlendar1.DAte)+'-Рµ, '+DayOfTheWeek(FormatDateTime('YYYYMMDD',dsCAlendar1.DAte));
   StaffListBox.Clear;
 
   d_offTable.Open;
@@ -2987,24 +2987,24 @@ begin
   d_offTableKOD.AsString:='STO';
   d_offTableD1.Value:=dsCalendar1.DAte;
   if d_offTable.GotoKey=True then
-     exit; // сечрвис не работает
+     exit; // СЃРµС‡СЂРІРёСЃ РЅРµ СЂР°Р±РѕС‚Р°РµС‚
 
   Form1.Spr00.Open;
   Form1.Spr00.IndexName:='NAIM';
-  Form1.Spr00.SetRange('32'+'','32'+'яя');
+  Form1.Spr00.SetRange('32'+'','32'+'СЏСЏ');
   Form1.Spr00.First;
   while Form1.Spr00.Eof=False do
         begin
         if Form1.Spr00PR.AsString='M' then
            begin
-           d_offTable.Open;  //пост не работает
+           d_offTable.Open;  //РїРѕСЃС‚ РЅРµ СЂР°Р±РѕС‚Р°РµС‚
            d_offTable.Setrange('','');
            d_offTable.IndexName:='KOD';
            d_offTable.SetKey;
            d_offTableKOD.AsString:='MM'+Form1.Spr00KOD.AsString;
            d_offTableD1.Value:=dsCalendar1.DAte;
            if d_offTable.GotoKey=False then
-              StaffListBox.Items.Add(Copy('Мастер'+'          ',1,10)+' - '+Form1.Spr00NAIM.AsString);
+              StaffListBox.Items.Add(Copy('РњР°СЃС‚РµСЂ'+'          ',1,10)+' - '+Form1.Spr00NAIM.AsString);
            end;
 
 
@@ -3025,14 +3025,14 @@ begin
 
         if Copy(SqlQuery1.FieldByName('FIO').AsString,1,1)<>'*' then
            begin
-           d_offTable.Open;  //пост не работает
+           d_offTable.Open;  //РїРѕСЃС‚ РЅРµ СЂР°Р±РѕС‚Р°РµС‚
            d_offTable.Setrange('','');
            d_offTable.IndexName:='KOD';
            d_offTable.SetKey;
            d_offTableKOD.AsString:='ST'+SqlQuery1.FieldByName('TAB_N').ASString;
            d_offTableD1.Value:=dsCalendar1.DAte;
            if d_offTable.GotoKey=False then
-              StaffListBox.Items.Add(Copy('Таб.№ '+SqlQuery1.FieldByName('TAB_N').ASString+'          ',1,10)+' - '+SqlQuery1.FieldByName('FIO').AsString);
+              StaffListBox.Items.Add(Copy('РўР°Р±.в„– '+SqlQuery1.FieldByName('TAB_N').ASString+'          ',1,10)+' - '+SqlQuery1.FieldByName('FIO').AsString);
            end;
 
         SqlQuery1.Next;
@@ -3263,7 +3263,7 @@ begin
 
    AppTAbleMonth.Open;
    AppTAbleMonth.IndexName:='DATE_APP1';
-   AppTAbleMonth.SetRange(FormatDateTime('YYYYMM',dsCAlendar1.DAte)+'01'+''+'',FormatDateTime('YYYYMM',dsCAlendar1.DAte)+'31'+'"'+'яя');
+   AppTAbleMonth.SetRange(FormatDateTime('YYYYMM',dsCAlendar1.DAte)+'01'+''+'',FormatDateTime('YYYYMM',dsCAlendar1.DAte)+'31'+'"'+'СЏСЏ');
    AppTAbleMonth.First;
 
 
@@ -3306,13 +3306,13 @@ begin
    N2.Visible:=True;
 
 
-   N1.Caption:='Закрыть запись на '+DateToStr(dsCAlendar1.Date);
-   N2.Caption:='Закрыть запись на '+Global_ColumnName;
+   N1.Caption:='Р—Р°РєСЂС‹С‚СЊ Р·Р°РїРёСЃСЊ РЅР° '+DateToStr(dsCAlendar1.Date);
+   N2.Caption:='Р—Р°РєСЂС‹С‚СЊ Р·Р°РїРёСЃСЊ РЅР° '+Global_ColumnName;
 
 
    AppTAble.Open;
    AppTAble.IndexName:='DATE_APP1';
-   AppTAble.SetRange(FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+''+'',FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+'я'+'яя');
+   AppTAble.SetRange(FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+''+'',FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+'СЏ'+'СЏСЏ');
    AppTAble.First;
 
 
@@ -3321,9 +3321,9 @@ begin
    if AppTAble.Locate('POSTCODE;TIME1;NAVL_PR',VarArrayOf([DayTAble.FieldByNAme('POSTCODE').ASString,Copy(Global_ColumnNAme,1,2)+Copy(Global_ColumnNAme,4,2),'1']),[])=True then
       begin
       N1.Visible:=FAlse;
-      N2.Caption:='Открыть запись на '+Global_ColumnName;
+      N2.Caption:='РћС‚РєСЂС‹С‚СЊ Р·Р°РїРёСЃСЊ РЅР° '+Global_ColumnName;
       end
-   else //ищем закрытие на весь день
+   else //РёС‰РµРј Р·Р°РєСЂС‹С‚РёРµ РЅР° РІРµСЃСЊ РґРµРЅСЊ
       begin
 
       if StrToInt(FormatDateTime('YYYY',dsCalendar1.Date))>StrToInt(FormatDAteTime('YYYY',date)) then
@@ -3354,7 +3354,7 @@ begin
               d_offTableD1.Value:=dsCalendar1.Date;
               if d_offTable.GotoKey then
                  begin
-                 N1.Caption:='Открыть запись на '+DateToStr(dsCAlendar1.Date);
+                 N1.Caption:='РћС‚РєСЂС‹С‚СЊ Р·Р°РїРёСЃСЊ РЅР° '+DateToStr(dsCAlendar1.Date);
                  N2.Visible:=FAlse;
                  end;
       end;
@@ -3362,14 +3362,14 @@ begin
 
 
    if AppTAble.Locate('POSTCODE;TIME1;NAVL_PR;IO_UDL',VarArrayOf([DayTAble.FieldByNAme('POSTCODE').ASString,Copy(Global_ColumnNAme,1,2)+Copy(Global_ColumnNAme,4,2),NULL,NULL]),[])=True then
-      begin //уже есть записи на ремонт
+      begin //СѓР¶Рµ РµСЃС‚СЊ Р·Р°РїРёСЃРё РЅР° СЂРµРјРѕРЅС‚
       N1.Visible:=FAlse;
       N2.Visible:=FAlse;
       end;
 
 
    AppTAble.IndexName:='DATE_APP1';
-   AppTAble.SetRange(FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+''+'',FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+'"'+'яя');
+   AppTAble.SetRange(FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+''+'',FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+'"'+'СЏСЏ');
 
 
 end;
@@ -3389,9 +3389,9 @@ if DetailPanel.Visible=True then exit;
 
    if (RealColumnName='NAIM') then
       begin
-      //первое доступное время
+      //РїРµСЂРІРѕРµ РґРѕСЃС‚СѓРїРЅРѕРµ РІСЂРµРјСЏ
       //Global_ColumnNAme:=Copy(DayTAble.Fields[2].FieldName,2,10);
-//      my_messageTime('Внимание!',PChar('Вы можете изменить этот список: '+#13+'Общий справочник -> Ресурсы автосервиса.'),clYellow,10000);
+//      my_messageTime('Р’РЅРёРјР°РЅРёРµ!',PChar('Р’С‹ РјРѕР¶РµС‚Рµ РёР·РјРµРЅРёС‚СЊ СЌС‚РѕС‚ СЃРїРёСЃРѕРє: '+#13+'РћР±С‰РёР№ СЃРїСЂР°РІРѕС‡РЅРёРє -> Р РµСЃСѓСЂСЃС‹ Р°РІС‚РѕСЃРµСЂРІРёСЃР°.'),clYellow,10000);
 
       exit;
       end;
@@ -3400,7 +3400,7 @@ if DetailPanel.Visible=True then exit;
    try
    if DAyTable.FieldByNAme('H'+Copy(Global_ColumnNAme,1,2)+Copy(Global_ColumnNAme,4,2)).AsString='X' then
       begin
-      my_messageTime('Внимание!','Запись закрыта!',clYellow,2000);
+      my_messageTime('Р’РЅРёРјР°РЅРёРµ!','Р—Р°РїРёСЃСЊ Р·Р°РєСЂС‹С‚Р°!',clYellow,2000);
       exit;
       end;
    except
@@ -3408,14 +3408,14 @@ if DetailPanel.Visible=True then exit;
 
    if DAyTable.FieldByNAme('H'+Copy(Global_ColumnNAme,1,2)).AsString='X' then
       begin
-      my_messageTime('Внимание!','Запись закрыта!',clYellow,2000);
+      my_messageTime('Р’РЅРёРјР°РЅРёРµ!','Р—Р°РїРёСЃСЊ Р·Р°РєСЂС‹С‚Р°!',clYellow,2000);
       exit;
       end;
 
 
 
    if AppTAble.Locate('POSTCODE;TIME1;NAVL_PR;IO_UDL',VarArrayOf([DayTAble.FieldByNAme('POSTCODE').ASString,Copy(Global_ColumnNAme,1,2)+Copy(Global_ColumnNAme,4,2),NULL,NULL]),[])=True then
-      begin //уже есть записи на ремонт
+      begin //СѓР¶Рµ РµСЃС‚СЊ Р·Р°РїРёСЃРё РЅР° СЂРµРјРѕРЅС‚
 
       if StrToInt(FormatDAteTime('YYYY',dsCAlendar1.DAte))>StrToInt(FormatDAteTime('YYYY',date)) then
          _year:='NY'
@@ -3435,7 +3435,7 @@ if DetailPanel.Visible=True then exit;
       AppTAbleTime.IndexName:='DATE_APP';
       AppTAbleTime.SetRange(FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+DAyTAble.FieldByName('POSTCODE').AsString+Copy(Global_ColumnNAme,1,2)+Copy(Global_ColumnNAme,4,2),FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+DAyTAble.FieldByName('POSTCODE').AsString+Copy(Global_ColumnNAme,1,2)+Copy(Global_ColumnNAme,4,2));
 
-      Panel7.CAption:='Запись на '+DateToStr(dsCAlendar1.DAte)+' - '+Global_ColumnNAme;
+      Panel7.CAption:='Р—Р°РїРёСЃСЊ РЅР° '+DateToStr(dsCAlendar1.DAte)+' - '+Global_ColumnNAme;
 
       SelectedTimeLAbel.CAption:=Global_ColumnNAme;
 
@@ -3462,7 +3462,7 @@ if DetailPanel.Visible=True then exit;
 
 
 //19112021
-//есть записи на это время, но с другими минутами и может они скрыты по сетке. Например сетка по 1 часу а запись на 16:30
+//РµСЃС‚СЊ Р·Р°РїРёСЃРё РЅР° СЌС‚Рѕ РІСЂРµРјСЏ, РЅРѕ СЃ РґСЂСѓРіРёРјРё РјРёРЅСѓС‚Р°РјРё Рё РјРѕР¶РµС‚ РѕРЅРё СЃРєСЂС‹С‚С‹ РїРѕ СЃРµС‚РєРµ. РќР°РїСЂРёРјРµСЂ СЃРµС‚РєР° РїРѕ 1 С‡Р°СЃСѓ Р° Р·Р°РїРёСЃСЊ РЅР° 16:30
    try
    if (Trim(DAyTable.FieldByNAme('H'+Copy(Global_ColumnNAme,1,2)).AsString)<>'') then
       begin
@@ -3487,7 +3487,7 @@ if DetailPanel.Visible=True then exit;
       AppTAbleTime.SetRange(FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+DAyTAble.FieldByName('POSTCODE').AsString+Copy(Global_ColumnNAme,1,2),FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+DAyTAble.FieldByName('POSTCODE').AsString+Copy(Global_ColumnNAme,1,2)+'59');
 
 
-      Panel7.CAption:='Запись на '+DateToStr(dsCAlendar1.DAte)+' до '+Global_ColumnNAme;
+      Panel7.CAption:='Р—Р°РїРёСЃСЊ РЅР° '+DateToStr(dsCAlendar1.DAte)+' РґРѕ '+Global_ColumnNAme;
       SelectedTimeLAbel.CAption:=Global_ColumnNAme;
 
       PAnel6.Left:=(AppointmentForm.ClientWidth div 2) - (PAnel6.Width div 2);
@@ -3512,7 +3512,7 @@ if DetailPanel.Visible=True then exit;
 
 
 
-//есть более ранняя запись перекрывающая это время
+//РµСЃС‚СЊ Р±РѕР»РµРµ СЂР°РЅРЅСЏСЏ Р·Р°РїРёСЃСЊ РїРµСЂРµРєСЂС‹РІР°СЋС‰Р°СЏ СЌС‚Рѕ РІСЂРµРјСЏ
    try
    if (Trim(DAyTable.FieldByNAme('H'+Copy(Global_ColumnNAme,1,2)).AsString)<>'') then
       begin
@@ -3536,7 +3536,7 @@ if DetailPanel.Visible=True then exit;
       AppTAbleTime.IndexName:='DATE_APP';
       AppTAbleTime.SetRange(FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+DAyTAble.FieldByName('POSTCODE').AsString+'',FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+DAyTAble.FieldByName('POSTCODE').AsString+Copy(Global_ColumnNAme,1,2)+Copy(Global_ColumnNAme,4,2));
 
-      Panel7.CAption:='Запись на '+DateToStr(dsCAlendar1.DAte)+' до '+Global_ColumnNAme;
+      Panel7.CAption:='Р—Р°РїРёСЃСЊ РЅР° '+DateToStr(dsCAlendar1.DAte)+' РґРѕ '+Global_ColumnNAme;
       SelectedTimeLAbel.CAption:=Global_ColumnNAme;
 
       PAnel6.Left:=(AppointmentForm.ClientWidth div 2) - (PAnel6.Width div 2);
@@ -3561,7 +3561,7 @@ if DetailPanel.Visible=True then exit;
 
    if (dsCAlendar1.DAte)<Trunc(date) then
        begin
-       my_messageTime('Внимание!','Дата уже прошла. Запись невозможна.',clYellow,5000);
+       my_messageTime('Р’РЅРёРјР°РЅРёРµ!','Р”Р°С‚Р° СѓР¶Рµ РїСЂРѕС€Р»Р°. Р—Р°РїРёСЃСЊ РЅРµРІРѕР·РјРѕР¶РЅР°.',clYellow,5000);
        exit;
        end;
 
@@ -3576,7 +3576,7 @@ if DetailPanel.Visible=True then exit;
       if ZajavkiForm.Zaj_oQuery.FieldByNAme('N_DOK').AsString=OrderNumberMaskEdit.Text then
          begin
          CarNumberMaskEdit.Text:=ZajavkiForm.MaskEdit5.Text;
-         CommentMemo.Text:='Заявка на ремонт уже создана.';
+         CommentMemo.Text:='Р—Р°СЏРІРєР° РЅР° СЂРµРјРѕРЅС‚ СѓР¶Рµ СЃРѕР·РґР°РЅР°.';
          FindByCarNumberBitBtn.Click;
          if ClientCarsListBox.Items.Count=1 then
             begin
@@ -3636,7 +3636,7 @@ begin
          end;
 
 
-   if Pos('Открыть',N1.CAption)=1 then
+   if Pos('РћС‚РєСЂС‹С‚СЊ',N1.CAption)=1 then
       begin
       d_offTable.Open;
       d_offTable.IndexName:='KOD';
@@ -3651,7 +3651,7 @@ begin
       end;
 
 
-   //закрыть
+   //Р·Р°РєСЂС‹С‚СЊ
 
 
 
@@ -3666,12 +3666,12 @@ begin
       AppTAbleTime.Open;
       AppTAbleTime.IndexName:='DATE_APP';
 
-      AppTAbleTime.SetRange(FormatDateTime('YYYYNNDD',dsCalendar1.Date)+DayTAble.FieldByNAme('POSTCODE').ASString+'',FormatDateTime('YYYYNNDD',dsCalendar1.Date)+DayTAble.FieldByNAme('POSTCODE').ASString+'яя');
+      AppTAbleTime.SetRange(FormatDateTime('YYYYNNDD',dsCalendar1.Date)+DayTAble.FieldByNAme('POSTCODE').ASString+'',FormatDateTime('YYYYNNDD',dsCalendar1.Date)+DayTAble.FieldByNAme('POSTCODE').ASString+'СЏСЏ');
 
       if AppTAbleTime.RecordCount>0 then
-         if my_dlg('Внимание!','Уже есть запись клиентов на выбранную дату и пост.'+#13+#13+'Продолжить?',clYellow)=False then exit;
+         if my_dlg('Р’РЅРёРјР°РЅРёРµ!','РЈР¶Рµ РµСЃС‚СЊ Р·Р°РїРёСЃСЊ РєР»РёРµРЅС‚РѕРІ РЅР° РІС‹Р±СЂР°РЅРЅСѓСЋ РґР°С‚Сѓ Рё РїРѕСЃС‚.'+#13+#13+'РџСЂРѕРґРѕР»Р¶РёС‚СЊ?',clYellow)=False then exit;
 
-      //добавляем запись
+      //РґРѕР±Р°РІР»СЏРµРј Р·Р°РїРёСЃСЊ
     d_offTable.Open;
     d_offTable.AppendRecord([ DayTAble.FieldByNAme('POSTCODE').ASString,
                               dsCalendar1.Date,
@@ -3690,14 +3690,14 @@ end;
 procedure TAppointmentForm.N2Click(Sender: TObject);
 var
    _year: string;
-begin //нет записи время
+begin //РЅРµС‚ Р·Р°РїРёСЃРё РІСЂРµРјСЏ
 
-   if Pos('Открыть',N2.CAption)=1 then
+   if Pos('РћС‚РєСЂС‹С‚СЊ',N2.CAption)=1 then
       begin
 
       AppTAble.Open;
       AppTAble.IndexName:='DATE_APP1';
-      AppTAble.SetRange(FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+''+'',FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+'я'+'яя');
+      AppTAble.SetRange(FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+''+'',FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+'СЏ'+'СЏСЏ');
       AppTAble.First;
 
       if AppTAble.Locate('POSTCODE;TIME1;NAVL_PR',VarArrayOf([DayTAble.FieldByNAme('POSTCODE').ASString,Copy(Global_ColumnNAme,1,2)+Copy(Global_ColumnNAme,4,2),'1']),[])=True then
@@ -3709,7 +3709,7 @@ begin //нет записи время
       end;
 
 
-   //закрыть
+   //Р·Р°РєСЂС‹С‚СЊ
 
    if StrToInt(FormatDAteTime('YYYY',dsCAlendar1.DAte))>StrToInt(FormatDAteTime('YYYY',date)) then
       _year:='NY'
@@ -3759,7 +3759,7 @@ end;
 
 procedure TAppointmentForm.N3Click(Sender: TObject);
 begin
-   if N3.CAption='Восстановить запись' then
+   if N3.CAption='Р’РѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ Р·Р°РїРёСЃСЊ' then
       begin
       AppTAble.Edit;
       AppTAbleIO_UDL.ASString:='';
@@ -3934,14 +3934,14 @@ begin
 
   if (Trim(ClientNameMaskEdit.Text)='') and (Trim(CarNumberMaskEdit.Text)='') then
      begin
-     my_messageTime('Внимание!','Не заполнены обязательные поля!',clYellow,5000);
+     my_messageTime('Р’РЅРёРјР°РЅРёРµ!','РќРµ Р·Р°РїРѕР»РЅРµРЅС‹ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Рµ РїРѕР»СЏ!',clYellow,5000);
      exit;
      end;
 
 
   if (StartTimeMaskEdit.Text='') or (StartTimeMaskEdit.Text='__:__') or (StartTimeMaskEdit.Text=':') or (StartTimeMaskEdit.Text='  :  ') then
      begin
-     my_messageTime('Внимание!','Не заполнены обязательные поля!',clYellow,5000);
+     my_messageTime('Р’РЅРёРјР°РЅРёРµ!','РќРµ Р·Р°РїРѕР»РЅРµРЅС‹ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Рµ РїРѕР»СЏ!',clYellow,5000);
      exit;
      end;
 
@@ -4005,16 +4005,16 @@ begin
 
 
      AppTAble.IndexName:='DATE_APP';
-     AppTAble.SetRange(FormatDateTime('YYYYMMDD',DAteTimePicker1.Date)+postcode+'',FormatDateTime('YYYYMMDD',DAteTimePicker1.Date)+postcode+'яя');
+     AppTAble.SetRange(FormatDateTime('YYYYMMDD',DAteTimePicker1.Date)+postcode+'',FormatDateTime('YYYYMMDD',DAteTimePicker1.Date)+postcode+'СЏСЏ');
      if AppTAble.Locate('POSTCODE;TIME1;NAVL_PR',VarArrayOf([postcode,Copy(StartTimeMaskEdit.Text,1,2)+Copy(StartTimeMaskEdit.Text,4,2),'1']),[])=True then
         begin
-        my_messageTime('Внимание!','Для выбранного поста, даты и времени запись закрыта!',clYellow,5000);
+        my_messageTime('Р’РЅРёРјР°РЅРёРµ!','Р”Р»СЏ РІС‹Р±СЂР°РЅРЅРѕРіРѕ РїРѕСЃС‚Р°, РґР°С‚С‹ Рё РІСЂРµРјРµРЅРё Р·Р°РїРёСЃСЊ Р·Р°РєСЂС‹С‚Р°!',clYellow,5000);
         exit;
         end
-     else //ищем закрытие на весь день
+     else //РёС‰РµРј Р·Р°РєСЂС‹С‚РёРµ РЅР° РІРµСЃСЊ РґРµРЅСЊ
      if AppTAble.Locate('POSTCODE;NAVL_PR',VarArrayOf([postcode,'0']),[])=True then
         begin
-        my_messageTime('Внимание!','Для выбранного поста, даты и времени запись закрыта!',clYellow,5000);
+        my_messageTime('Р’РЅРёРјР°РЅРёРµ!','Р”Р»СЏ РІС‹Р±СЂР°РЅРЅРѕРіРѕ РїРѕСЃС‚Р°, РґР°С‚С‹ Рё РІСЂРµРјРµРЅРё Р·Р°РїРёСЃСЊ Р·Р°РєСЂС‹С‚Р°!',clYellow,5000);
         exit;
         end;
 
@@ -4057,12 +4057,12 @@ begin
         AppTAbleFIO.AsString:=ClientNameMaskEdit.Text;
 
 
-        AppTAbleGOS_N.AsString:=CryptString(CarNumberMaskEdit.Text,key1c,key2c); //gos_n
+        AppTAbleGOS_N.AsString:=CryptString(CarNumberMaskEdit.Text,key1c,key2c);
 
-        AppTAbleMARKA.AsString:=MarkaMaskEdit.Text; //marka
-        AppTAbleMODEL.AsString:=ModelMaskEdit.Text; //
+        AppTAbleMARKA.AsString:=MarkaMaskEdit.Text;
+        AppTAbleMODEL.AsString:=ModelMaskEdit.Text;
 
-        AppTAbleN_ZAJ.AsString:=OrderNumberMaskEdit.Text; //
+        AppTAbleN_ZAJ.AsString:=OrderNumberMaskEdit.Text;
 
         AppTAbleK_KL.AsString:=k_klLAbel.Caption;
 
@@ -4073,9 +4073,9 @@ begin
         AppTAbleOBR_KL.AsString:=CryptString(ReasonMemo.Text,key1c,key2c);
         AppTAbleCOMM.AsString:=CryptString(CommentMemo.Text,key1c,key2c);
 
-        AppTAbleIO_ADD.AsString:=kod_operatora;  //io_add
-        AppTAbleD_ADD.VAlue:=date;           //d_add
-        AppTAbleT_ADD.AsString:=FormatDAteTime('nn:ss',now);  //t_add
+        AppTAbleIO_ADD.AsString:=kod_operatora;
+        AppTAbleD_ADD.VAlue:=date;
+        AppTAbleT_ADD.AsString:=FormatDAteTime('nn:ss',now);  
 
         AppTAble.Edit;
         AppTAble.Post;
@@ -4106,10 +4106,10 @@ begin
 
         end
       else
-        my_messageTime('Внимание!','Запись не найдена!',clYellow,3000);
+        my_messageTime('Р’РЅРёРјР°РЅРёРµ!','Р—Р°РїРёСЃСЊ РЅРµ РЅР°Р№РґРµРЅР°!',clYellow,3000);
      end
   else
-     begin //ADD
+     begin
      rec_id:=FormatDateTime('DD',date)+FormatDateTime('hhss',now);
 
      Form1.LastNum.Open;
@@ -4118,7 +4118,7 @@ begin
      Form1.LastNumMX.AsString:='#';
      Form1.LastNumKOD.AsString:='ID';
      if Form1.LastNum.GoToKey=False then
-        Form1.LastNum.AppendRecord(['#','ID','0000000','ID записи']);
+        Form1.LastNum.AppendRecord(['#','ID','0000000','ID Р·Р°РїРёСЃРё']);
 
      if (Form1.LastnumMX.AsString='#') and (Form1.LastnumKOD.AsString='ID') then
          begin
@@ -4153,28 +4153,28 @@ begin
                                   Copy(StartTimeMaskEdit.Text,1,2)+Copy(StartTimeMaskEdit.Text,4,2),
                                   NULL,
                                   postcode,
-                                  CryptString(CarNumberMaskEdit.Text,key1c,key2c), //gos_n
-                                  NULL,                                    //VIN
+                                  CryptString(CarNumberMaskEdit.Text,key1c,key2c),
+                                  NULL,                  //VIN
                                   MarkaMaskEdit.Text,
                                   ModelMaskEdit.Text,
-                                  k_klLAbel.Caption,           //k_kl
+                                  k_klLAbel.Caption,
                                   ClientNameMaskEdit.Text,
                                   CryptString(telCountryCodeMaskEdit.Text+telCodeMaskEdit.Text+telNumberMaskEdit.Text,key1c,key2c), //tel
-                                  car_n_zapLabel.Caption,           //car_n_zap
+                                  car_n_zapLabel.Caption,
                                   CryptString(ReasonMemo.Text,key1c,key2c),
                                   CryptString(CommentMemo.Text,key1c,key2c),
-                                  NULL,           //tab_n
+                                  NULL,                 //tab_n
                                   OrderNumberMaskEdit.Text, //n_zaj
-                                  NULL,          //NAVL_IO
-                                  NULL,          //navl_PR
-                                  NULL,          //dop_pr
-                                  NULL,          //d_udl
-                                  NULL,          //io_udl
-                                  kod_operatora,  //io_add
-                                  date,           //d_add
+                                  NULL,                 //NAVL_IO
+                                  NULL,                 //navl_PR
+                                  NULL,                 //dop_pr
+                                  NULL,                 //d_udl
+                                  NULL,                 //io_udl
+                                  kod_operatora,        //io_add
+                                  date,                 //d_add
                                   FormatDAteTime('nn:ss',now),  //t_add
                                   NULL,
-                                  rec_id]);   //rec_id
+                                  rec_id]);             //rec_id
 
 
      if (Length(Trim(EndTimeMaskEdit.Text))>4) and (Pos('_',EndTimeMaskEdit.Text)=0) then
@@ -4268,9 +4268,9 @@ var
 begin
    out_str:='';
    for i:=1 to Length(str) do
-                   // and (Ord(str[i])<160) выкидывала русские буквы
-       if (str[i]<>' ') and (str[i]<>'"') and (str[i]<>#39) and (str[i]<>' ') and (str[i]<>'(') and (str[i]<>')') and (str[i]<>'-') then
-          begin   //Это не пробел                              //Это не пробел!!! а какой-то другой символ
+                   // and (Ord(str[i])<160) РІС‹РєРёРґС‹РІР°Р»Р° СЂСѓСЃСЃРєРёРµ Р±СѓРєРІС‹
+       if (str[i]<>' ') and (str[i]<>'"') and (str[i]<>#39) and (str[i]<>'В ') and (str[i]<>'(') and (str[i]<>')') and (str[i]<>'-') then
+          begin   //Р­С‚Рѕ РЅРµ РїСЂРѕР±РµР»                              //Р­С‚Рѕ РЅРµ РїСЂРѕР±РµР»!!!
           out_str:=out_str+String(str[i]);
           end;
 
@@ -4351,7 +4351,7 @@ begin
 
   if (dsCAlendar1.DAte)<Trunc(date) then
       begin
-      my_messageTime('Внимание!','Дата уже прошла. Запись невозможна.',clYellow,5000);
+      my_messageTime('Р’РЅРёРјР°РЅРёРµ!','Р”Р°С‚Р° СѓР¶Рµ РїСЂРѕС€Р»Р°. Р—Р°РїРёСЃСЊ РЅРµРІРѕР·РјРѕР¶РЅР°.',clYellow,5000);
       exit;
       end;
 
@@ -4369,7 +4369,7 @@ begin
      if ZajavkiForm.Zaj_oQuery.FieldByNAme('N_DOK').AsString=OrderNumberMaskEdit.Text then
         begin
         CarNumberMaskEdit.Text:=ZajavkiForm.MaskEdit5.Text;
-        CommentMemo.Text:='Заявка на ремонт уже создана.';
+        CommentMemo.Text:='Р—Р°СЏРІРєР° РЅР° СЂРµРјРѕРЅС‚ СѓР¶Рµ СЃРѕР·РґР°РЅР°.';
         FindByCarNumberBitBtn.Click;
         if ClientCarsListBox.Items.Count=1 then
            begin
@@ -4556,7 +4556,7 @@ procedure TAppointmentForm.DeleteBitBtnClick(Sender: TObject);
 begin
   if AppTAbleDATE_APP.AsString='' then exit;
 
-  if my_dlg('Внимание!','Вы действительно хотите удалить запись?',clYellow)=FAlse then exit;
+  if my_dlg('Р’РЅРёРјР°РЅРёРµ!','Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ Р·Р°РїРёСЃСЊ?',clYellow)=FAlse then exit;
 
   if AppTAbleNAVL_PR.AsString<>'' then
      AppTAble.Delete
@@ -4577,15 +4577,15 @@ begin
       exit;
 
    if AppTAbleIO_UDL.AsString='' then
-      N3.CAption:='Удалить запись'
+      N3.CAption:='РЈРґР°Р»РёС‚СЊ Р·Р°РїРёСЃСЊ'
    else
-      N3.CAption:='Восстановить запись';
+      N3.CAption:='Р’РѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ Р·Р°РїРёСЃСЊ';
 
 
    N22.Visible:=FAlse;
    if (Length(AppTAbleN_ZAJ.ASString)=9) and (Copy(AppTAbleN_ZAJ.ASString,4,1)='J') then
        begin
-       N22.Caption:='-> Заявка на ремонт '+AppTAbleN_ZAJ.ASString;
+       N22.Caption:='-> Р—Р°СЏРІРєР° РЅР° СЂРµРјРѕРЅС‚ '+AppTAbleN_ZAJ.ASString;
        N22.Visible:=True;
        end;
 
@@ -4600,7 +4600,7 @@ procedure TAppointmentForm.EditOrderBitBtn2Click(Sender: TObject);
 begin
   if AppTAbleIO_UDL.ASString<>'' then
      begin
-     my_messageTime('Внимание!','Запись удалена!'+#13+'Сначала восстановите запись по правой кнопке мыши.',clYellow,5000);
+     my_messageTime('Р’РЅРёРјР°РЅРёРµ!','Р—Р°РїРёСЃСЊ СѓРґР°Р»РµРЅР°!'+#13+'РЎРЅР°С‡Р°Р»Р° РІРѕСЃСЃС‚Р°РЅРѕРІРёС‚Рµ Р·Р°РїРёСЃСЊ РїРѕ РїСЂР°РІРѕР№ РєРЅРѕРїРєРµ РјС‹С€Рё.',clYellow,5000);
      exit;
      end;
 
@@ -4648,8 +4648,8 @@ var
 begin
    out_str:='';
    for i:=1 to Length(str) do
-       if (str[i]<>' ') and (str[i]<>'"') and (str[i]<>#39) and (str[i]<>' ') and (str[i]<>'(') and (str[i]<>')') and (str[i]<>'-') then
-          begin   //Это не пробел                              //Это не пробел!!!
+       if (str[i]<>' ') and (str[i]<>'"') and (str[i]<>#39) and (str[i]<>'В ') and (str[i]<>'(') and (str[i]<>')') and (str[i]<>'-') then
+          begin   //Р­С‚Рѕ РЅРµ РїСЂРѕР±РµР»                              //Р­С‚Рѕ РЅРµ РїСЂРѕР±РµР»!!!
           out_str:=out_str+String(str[i]);
           end;
 
@@ -4736,7 +4736,7 @@ procedure TAppointmentForm.EditRecBitBtnClick(Sender: TObject);
 begin
   if AppTAbleTimeIO_UDL.ASString<>'' then
      begin
-     my_messageTime('Внимание!','Запись удалена!'+#13+'Сначала восстановите запись по правой кнопке мыши.',clYellow,5000);
+     my_messageTime('Р’РЅРёРјР°РЅРёРµ!','Р—Р°РїРёСЃСЊ СѓРґР°Р»РµРЅР°!'+#13+'РЎРЅР°С‡Р°Р»Р° РІРѕСЃСЃС‚Р°РЅРѕРІРёС‚Рµ Р·Р°РїРёСЃСЊ РїРѕ РїСЂР°РІРѕР№ РєРЅРѕРїРєРµ РјС‹С€Рё.',clYellow,5000);
      exit;
      end;
 
@@ -4753,7 +4753,7 @@ procedure TAppointmentForm.DelRecBitBtnClick(Sender: TObject);
 begin
   if AppTAbleTimeDATE_APP.AsString='' then exit;
 
-  if my_dlg('Внимание!','Вы действительно хотите удалить запись?',clYellow)=FAlse then exit;
+  if my_dlg('Р’РЅРёРјР°РЅРёРµ!','Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ Р·Р°РїРёСЃСЊ?',clYellow)=FAlse then exit;
 
   if AppTAbleTimeNAVL_PR.AsString<>'' then
      AppTAbleTime.Delete
@@ -4810,9 +4810,9 @@ begin
             else
                fun_result:=StrPas(SelectKLient('','','','',PChar(kod_operatora),PChar(Path_base),AppointmentForm.Color,AppointmentForm.DBGrid1.Color,Label2.Font.Color,False,False,false,false));
            end
-        else ShowMessage('Библиотека sprav.dll не найдена...');
+        else ShowMessage('Р‘РёР±Р»РёРѕС‚РµРєР° sprav.dll РЅРµ РЅР°Р№РґРµРЅР°...');
         end
-        else my_message('Внимание!','Файл sprav.dll не найден.',clYellow);
+        else my_message('Р’РЅРёРјР°РЅРёРµ!','Р¤Р°Р№Р» sprav.dll РЅРµ РЅР°Р№РґРµРЅ.',clYellow);
 
 
     if (Trim(fun_result)<>'') and (fun_result<>'ERASE') then
@@ -4853,7 +4853,7 @@ begin
 
   if Copy(k_klLabel.CAption,2,1)='F' then
      begin
-     if Copy(UncryptString(Form1.Label5.Caption,key1v,key2v),17,1)<>'T' then //нет оптовой торговли-2
+     if Copy(UncryptString(Form1.Label5.Caption,key1v,key2v),17,1)<>'T' then //РЅРµС‚ РѕРїС‚РѕРІРѕР№ С‚РѕСЂРіРѕРІР»Рё-2
         Clients_proc('xx',
                      PChar(Mx),
                      PChar(kod_operatora+users.MaskEdit100.Text),
@@ -4903,7 +4903,7 @@ begin
   else
   if Copy(k_klLabel.CAption,2,1)='U' then
      begin
-     if Copy(UncryptString(Form1.Label5.Caption,key1v,key2v),17,1)<>'T' then //нет оптовой торговли-2
+     if Copy(UncryptString(Form1.Label5.Caption,key1v,key2v),17,1)<>'T' then //РЅРµС‚ РѕРїС‚РѕРІРѕР№ С‚РѕСЂРіРѕРІР»Рё-2
         Clients_proc('xx',
                      PChar(Mx),
                      PChar(kod_operatora+users.MaskEdit100.Text),
@@ -4984,7 +4984,7 @@ except
       exit;
 end;
 
-   if Pos('автомобиль',PAnel10.CAption)>0 then
+   if Pos('Р°РІС‚РѕРјРѕР±РёР»СЊ',PAnel10.CAption)>0 then
       begin
 
       carsQuery.SQL.Clear;
@@ -5036,7 +5036,7 @@ end;
       PAnel9.Visible:=False;
       end
    else
-   if Pos('клиент',PAnel10.CAption)>0 then
+   if Pos('РєР»РёРµРЅС‚',PAnel10.CAption)>0 then
       begin
       k_klLAbel.CAption:=Copy(ClientCarsListBox.Items[ClientCarsListBox.ItemIndex],107,6);
 
@@ -5105,12 +5105,12 @@ begin
    else
    if ClientCarsListBox.Items.Count>1 then
       begin
-      PAnel10.Caption:='Уточните клиента';
+      PAnel10.Caption:='РЈС‚РѕС‡РЅРёС‚Рµ РєР»РёРµРЅС‚Р°';
 
       PAnel9.Visible:=True;
       end
    else
-      my_messageTime('Внимание!','Клиент не найден.',clYellow,3000);
+      my_messageTime('Р’РЅРёРјР°РЅРёРµ!','РљР»РёРµРЅС‚ РЅРµ РЅР°Р№РґРµРЅ.',clYellow,3000);
 
 
 end;
@@ -5158,7 +5158,7 @@ begin
 
   if Trunc(DAteTimePicker3.Date)<Trunc(DateTimePicker2.Date) then
      begin
-     my_messageTime('Внимание!','Неверный диапазон дат.',clYellow,3000);
+     my_messageTime('Р’РЅРёРјР°РЅРёРµ!','РќРµРІРµСЂРЅС‹Р№ РґРёР°РїР°Р·РѕРЅ РґР°С‚.',clYellow,3000);
      exit;
      end;
 
@@ -5180,10 +5180,10 @@ begin
 
   d_offTableSTO.Open;
   d_offTableSTO.IndexName:='KOD';
-  d_offTableSTO.SetRange('STO   '+'','STO   '+'яя');
+  d_offTableSTO.SetRange('STO   '+'','STO   '+'СЏСЏ');
   if d_offTableSTO.Locate('D1',FormatDAteTime('YYYYMMDD',DateTimePicker2.DAte),[])=True then
      begin
-     my_messageTime('Внимание!','Запись уже есть.'+#13+'Удалите имеющуюся.',clYellow,3000);
+     my_messageTime('Р’РЅРёРјР°РЅРёРµ!','Р—Р°РїРёСЃСЊ СѓР¶Рµ РµСЃС‚СЊ.'+#13+'РЈРґР°Р»РёС‚Рµ РёРјРµСЋС‰СѓСЋСЃСЏ.',clYellow,3000);
      exit;
      end;
 
@@ -5218,10 +5218,10 @@ begin
 
     d_offTableSTO.Open;
     d_offTableSTO.IndexName:='KOD';
-    d_offTableSTO.SetRange('STO   '+'','STO   '+'яя');
+    d_offTableSTO.SetRange('STO   '+'','STO   '+'СЏСЏ');
     if d_offTableSTO.Locate('D1',FormatDAteTime('YYYYMMDD',DateTimePicker3.DAte),[])=True then
        begin
-       my_messageTime('Внимание!',PChar('Запись уже есть в '+FormatDAteTime('YYYY',DateTimePicker3.DAte)+' году.'+#13+'Удалите имеющуюся.'),clYellow,3000);
+       my_messageTime('Р’РЅРёРјР°РЅРёРµ!',PChar('Р—Р°РїРёСЃСЊ СѓР¶Рµ РµСЃС‚СЊ РІ '+FormatDAteTime('YYYY',DateTimePicker3.DAte)+' РіРѕРґСѓ.'+#13+'РЈРґР°Р»РёС‚Рµ РёРјРµСЋС‰СѓСЋСЃСЏ.'),clYellow,3000);
        exit;
        end;
 
@@ -5341,17 +5341,17 @@ begin
                       end;
 
 
-                   ClientCarsListBox.Items.Add('Гос.№: '+Copy(UnCryptString(SqlQuery1.FieldByName('GOS_N').AsString,key1a,key2a)+'          ',1,10)+' - '+Copy(auto+'                    ',1,20)+' - '+Copy(klient_name+'                                                            ',1,60)+' - '+SqlQuery1.FieldByName('K_KL').AsString);
+                   ClientCarsListBox.Items.Add('Р“РѕСЃ.в„–: '+Copy(UnCryptString(SqlQuery1.FieldByName('GOS_N').AsString,key1a,key2a)+'          ',1,10)+' - '+Copy(auto+'                    ',1,20)+' - '+Copy(klient_name+'                                                            ',1,60)+' - '+SqlQuery1.FieldByName('K_KL').AsString);
 
                    SqlQuery1.Next;
                    end;
 
 
-            PAnel10.Caption:='Уточните клиента';
+            PAnel10.Caption:='РЈС‚РѕС‡РЅРёС‚Рµ РєР»РёРµРЅС‚Р°';
             PAnel9.Visible:=True;
             end
         else
-            my_messageTime('Внимание!','Клиент не найден.',clYellow,3000);
+            my_messageTime('Р’РЅРёРјР°РЅРёРµ!','РљР»РёРµРЅС‚ РЅРµ РЅР°Р№РґРµРЅ.',clYellow,3000);
 
 end;
 
@@ -5430,7 +5430,7 @@ EXIT; //not use
 
     d_offTableSTO.Open;
     d_offTableSTO.IndexName:='KOD';
-    d_offTableSTO.SetRange('STO   '+'','STO   '+'яя');
+    d_offTableSTO.SetRange('STO   '+'','STO   '+'СЏСЏ');
     if d_offTableSTO.Locate('D1',FormatDAteTime('YYYYMMDD',dsCalendar2.Date),[])=True then
        d_offTableSTO.Delete
     else
@@ -5456,7 +5456,7 @@ begin
 PostCodeLAbel.CAption:='';
 
 if ResourceItemsComboBox.ItemIndex=1 then
-   begin    //Персонал СТО
+   begin    //РџРµСЂСЃРѕРЅР°Р» РЎРўРћ
    PostCodeLAbel.CAption:='STAFF';
    DBGrid7.Visible:=FAlse;
    DBGrid9.Visible:=True;
@@ -5465,7 +5465,7 @@ if ResourceItemsComboBox.ItemIndex=1 then
    end
 else
 if ResourceItemsComboBox.ItemIndex=2 then
-   begin    //Нерабочие дни СТО
+   begin    //РќРµСЂР°Р±РѕС‡РёРµ РґРЅРё РЎРўРћ
    PostCodeLAbel.CAption:='STO';
    DBGrid7.Visible:=True;
    DBGrid9.Visible:=False;
@@ -5473,7 +5473,7 @@ if ResourceItemsComboBox.ItemIndex=2 then
    end
 else
 if ResourceItemsComboBox.ItemIndex=0 then
-   begin    //все ресурсы СТО
+   begin    //РІСЃРµ СЂРµСЃСѓСЂСЃС‹ РЎРўРћ
    PostCodeLAbel.CAption:='STO';
    DBGrid7.Visible:=False;
    DBGrid9.Visible:=True;
@@ -5645,21 +5645,21 @@ begin
       AppTAbleTime.IndexName:='DATE_APP';
 
       if postCodelabel.CAption<>'STO' then
-         AppTAbleTime.SetRange(YearComboBox.Text+month+day+postCodelabel.CAption+'',YearComboBox.Text+month+day+postCodelabel.CAption+'яя')
+         AppTAbleTime.SetRange(YearComboBox.Text+month+day+postCodelabel.CAption+'',YearComboBox.Text+month+day+postCodelabel.CAption+'СЏСЏ')
       else
-         AppTAbleTime.SetRange(YearComboBox.Text+month+day+'',YearComboBox.Text+month+day+'яя');
+         AppTAbleTime.SetRange(YearComboBox.Text+month+day+'',YearComboBox.Text+month+day+'СЏСЏ');
 
 
       if AppTAbleTime.RecordCount>0 then
          begin
          if postCodelabel.CAption<>'STO' then
-         if my_dlg('Внимание!','Уже есть запись клиентов на выбранную дату и пост.'+#13+#13+'Продолжить?',clYellow)=False then exit;
+         if my_dlg('Р’РЅРёРјР°РЅРёРµ!','РЈР¶Рµ РµСЃС‚СЊ Р·Р°РїРёСЃСЊ РєР»РёРµРЅС‚РѕРІ РЅР° РІС‹Р±СЂР°РЅРЅСѓСЋ РґР°С‚Сѓ Рё РїРѕСЃС‚.'+#13+#13+'РџСЂРѕРґРѕР»Р¶РёС‚СЊ?',clYellow)=False then exit;
 
          if postCodelabel.CAption='STO' then
-         if my_dlg('Внимание!','Уже есть запись клиентов на выбранную дату.'+#13+#13+'Продолжить?',clYellow)=False then exit;
+         if my_dlg('Р’РЅРёРјР°РЅРёРµ!','РЈР¶Рµ РµСЃС‚СЊ Р·Р°РїРёСЃСЊ РєР»РёРµРЅС‚РѕРІ РЅР° РІС‹Р±СЂР°РЅРЅСѓСЋ РґР°С‚Сѓ.'+#13+#13+'РџСЂРѕРґРѕР»Р¶РёС‚СЊ?',clYellow)=False then exit;
          end;
 
-      //добавляем запись
+      //РґРѕР±Р°РІР»СЏРµРј Р·Р°РїРёСЃСЊ
       d_offTable.Open;
       d_offTable.AppendRecord([ PostCodeLAbel.CAption,
                               StrToDate(day+'.'+month+'.'+YearComboBox.Text),
@@ -5696,11 +5696,10 @@ var
   _year, month, day, str: string;
 
 begin
-  with DBGrid9.Canvas do
-       begin
+ with DBGrid9.Canvas do
+      begin
 
 
-      //*************************************************************************************************************
       if DBGrid9.DataSource=DAtaSource6 then
       BEGIN
 
@@ -5804,7 +5803,7 @@ begin
 
 
 
-      //*************************************************************************************************************
+
       if DBGrid9.DataSource=DAtaSource8 then
       BEGIN
 
@@ -5822,7 +5821,7 @@ begin
             Form1.Spr00KOD.AsString:=Copy(MonthTableStaffSTAFFCODE.AsString,3,10);
             if Form1.Spr00.GotoKey then
                begin
-               String_array:=delenie_of_string_for_print('Мастер - '+Form1.Spr00NAIM.AsString,DBGrid9.Canvas,Rect.Right-Rect.Left);
+               String_array:=delenie_of_string_for_print('РњР°СЃС‚РµСЂ - '+Form1.Spr00NAIM.AsString,DBGrid9.Canvas,Rect.Right-Rect.Left);
 
                TextOut(Rect.Left+2,Rect.Top,String_array.Str1);
 
@@ -5838,7 +5837,7 @@ begin
             Tab_nTable.IndexName:='TAB_N';
             if Tab_nTable.FindKey([Copy(MonthTableStaffSTAFFCODE.AsString,3,10)]) then
                begin
-               String_array:=delenie_of_string_for_print('Таб.№ '+Tab_nTableTAB_N.AsString+' - '+Tab_nTableFIO.AsString,DBGrid9.Canvas,Rect.Right-Rect.Left);
+               String_array:=delenie_of_string_for_print('РўР°Р±.в„– '+Tab_nTableTAB_N.AsString+' - '+Tab_nTableFIO.AsString,DBGrid9.Canvas,Rect.Right-Rect.Left);
 
                TextOut(Rect.Left+2,Rect.Top,String_array.Str1);
 
@@ -5943,14 +5942,13 @@ var
 
 begin
 
- //************************************************************************************************************************
  if DBGrid9.DataSource=DataSource6 then
     BEGIN
 
     try
     if Column.FieldName='POSTCODE' then exit;
        except
-       exit; //кликнули в POSTCODE
+       exit; //РєР»РёРєРЅСѓР»Рё РІ POSTCODE
        end;
 
     try
@@ -5997,12 +5995,12 @@ begin
        AppTAbleTime.Open;
        AppTAbleTime.IndexName:='DATE_APP';
 
-       AppTAbleTime.SetRange(YearComboBox.Text+month+day+MonthTablePostsPOSTCODE.ASString+'',YearComboBox.Text+month+day+MonthTablePostsPOSTCODE.ASString+'яя');
+       AppTAbleTime.SetRange(YearComboBox.Text+month+day+MonthTablePostsPOSTCODE.ASString+'',YearComboBox.Text+month+day+MonthTablePostsPOSTCODE.ASString+'СЏСЏ');
 
        if AppTAbleTime.RecordCount>0 then
-          if my_dlg('Внимание!','Уже есть запись клиентов на выбранную дату и пост.'+#13+#13+'Продолжить?',clYellow)=False then exit;
+          if my_dlg('Р’РЅРёРјР°РЅРёРµ!','РЈР¶Рµ РµСЃС‚СЊ Р·Р°РїРёСЃСЊ РєР»РёРµРЅС‚РѕРІ РЅР° РІС‹Р±СЂР°РЅРЅСѓСЋ РґР°С‚Сѓ Рё РїРѕСЃС‚.'+#13+#13+'РџСЂРѕРґРѕР»Р¶РёС‚СЊ?',clYellow)=False then exit;
 
-      //добавляем запись
+      //РґРѕР±Р°РІР»СЏРµРј Р·Р°РїРёСЃСЊ
        d_offTable.Open;
        d_offTable.AppendRecord([ MonthTablePostsPOSTCODE.ASString,
                                  StrToDate(day+'.'+month+'.'+YearComboBox.Text),
@@ -6015,14 +6013,14 @@ begin
 
 
 
- //************************************************************************************************************************
+
  if DBGrid9.DataSource=DataSource8 then
     BEGIN
 
     try
     if Column.FieldName='STAFFCODE' then exit;
     except
-     exit; //ткнули в STAFFCODE
+     exit; //РєР»РёРєРЅСѓР»Рё РІ STAFFCODE
     end;
 
 
@@ -6053,7 +6051,7 @@ begin
     else
        begin
 
-      //добавляем запись
+      //РґРѕР±Р°РІР»СЏРµРј Р·Р°РїРёСЃСЊ
        d_offTable.Open;
        d_offTable.AppendRecord([ MonthTableStaffSTAFFCODE.ASString,
                               StrToDate(day+'.'+month+'.'+YearComboBox.Text),
@@ -6080,10 +6078,10 @@ begin
 
    if (k_klLAbel.CAption<>'') and (Car_N_ZAPLAbel.CAption<>'') then
        begin
-       rezult:=my_vybor('Внимание!','Создать заявку на ремонт.','Перейти в макет документов.','NULL','NULL',clYellow);
+       rezult:=my_vybor('Р’РЅРёРјР°РЅРёРµ!','РЎРѕР·РґР°С‚СЊ Р·Р°СЏРІРєСѓ РЅР° СЂРµРјРѕРЅС‚.','РџРµСЂРµР№С‚Рё РІ РјР°РєРµС‚ РґРѕРєСѓРјРµРЅС‚РѕРІ.','NULL','NULL',clYellow);
 
 
-       if rezult='Создать заявку на ремонт.' then
+       if rezult='РЎРѕР·РґР°С‚СЊ Р·Р°СЏРІРєСѓ РЅР° СЂРµРјРѕРЅС‚.' then
           begin
 
           if PageControl1.ActivePage=Tab1 then
@@ -6124,7 +6122,7 @@ begin
           InsertForm.PageControl1.ActivePage:=InsertForm.Tab2;
           InsertForm.PageControl1Change(InsertForm.PageControl1);
 
-//          передать код клиента в поиск по клиенту
+//          РїРµСЂРµРґР°С‚СЊ РєРѕРґ РєР»РёРµРЅС‚Р° РІ РїРѕРёСЃРє РїРѕ РєР»РёРµРЅС‚Сѓ
           if (Length(K_klLAbel.CAption)=6) and ((Copy(K_klLAbel.CAption,2,1)='F') or (Copy(K_klLAbel.CAption,2,1)='U')) then
               begin
               FindUnit.client_karman:='';
@@ -6173,16 +6171,16 @@ var
 begin
    if AppTAbleD_UDL.AsString<>'' then
       begin
-      my_messageTime('Внимание!','Запись удалена.',clYellow,3000);
+      my_messageTime('Р’РЅРёРјР°РЅРёРµ!','Р—Р°РїРёСЃСЊ СѓРґР°Р»РµРЅР°.',clYellow,3000);
       exit;
       end;
 
    if (AppTAblek_kl.AsString<>'') and (AppTAbleCAR_N_ZAP.AsString<>'') then
        begin
-       rezult:=my_vybor('Внимание!','Создать заявку на ремонт.','Перейти в макет документов.','NULL','NULL',clYellow);
+       rezult:=my_vybor('Р’РЅРёРјР°РЅРёРµ!','РЎРѕР·РґР°С‚СЊ Р·Р°СЏРІРєСѓ РЅР° СЂРµРјРѕРЅС‚.','РџРµСЂРµР№С‚Рё РІ РјР°РєРµС‚ РґРѕРєСѓРјРµРЅС‚РѕРІ.','NULL','NULL',clYellow);
 
 
-       if rezult='Создать заявку на ремонт.' then
+       if rezult='РЎРѕР·РґР°С‚СЊ Р·Р°СЏРІРєСѓ РЅР° СЂРµРјРѕРЅС‚.' then
           begin
           createNewZajProc(AppTable,AppTAblek_kl.AsString, AppTAbleCAR_N_ZAP.AsString);
           end
@@ -6202,7 +6200,7 @@ begin
           InsertForm.PageControl1.ActivePage:=InsertForm.Tab2;
           InsertForm.PageControl1Change(InsertForm.PageControl1);
 
-//          передать код клиента в поиск по клиенту
+//          РїРµСЂРµРґР°С‚СЊ РєРѕРґ РєР»РёРµРЅС‚Р° РІ РїРѕРёСЃРє РїРѕ РєР»РёРµРЅС‚Сѓ
           if (Length(AppTAblek_kl.AsString)=6) and ((Copy(AppTAblek_kl.AsString,2,1)='F') or (Copy(AppTAblek_kl.AsString,2,1)='U')) then
               begin
               FindUnit.client_karman:='';
@@ -6247,7 +6245,7 @@ begin
 
    if AppTAbleTimeD_UDL.AsString<>'' then
       begin
-      my_messageTime('Внимание!','Запись удалена.',clYellow,3000);
+      my_messageTime('Р’РЅРёРјР°РЅРёРµ!','Р—Р°РїРёСЃСЊ СѓРґР°Р»РµРЅР°.',clYellow,3000);
       exit;
       end;
 
@@ -6255,10 +6253,10 @@ begin
    if (AppTAbleTimek_kl.AsString<>'') and (AppTAbleTimeCAR_N_ZAP.AsString<>'') then
        begin
 
-       rezult:=my_vybor('Внимание!','Создать заявку на ремонт.','Перейти в макет документов.','NULL','NULL',clYellow);
+       rezult:=my_vybor('Р’РЅРёРјР°РЅРёРµ!','РЎРѕР·РґР°С‚СЊ Р·Р°СЏРІРєСѓ РЅР° СЂРµРјРѕРЅС‚.','РџРµСЂРµР№С‚Рё РІ РјР°РєРµС‚ РґРѕРєСѓРјРµРЅС‚РѕРІ.','NULL','NULL',clYellow);
 
 
-       if rezult='Создать заявку на ремонт.' then
+       if rezult='РЎРѕР·РґР°С‚СЊ Р·Р°СЏРІРєСѓ РЅР° СЂРµРјРѕРЅС‚.' then
           begin
           createNewZajProc(AppTableTime,AppTAbleTimek_kl.AsString, AppTAbleTimeCAR_N_ZAP.AsString)
           end
@@ -6280,7 +6278,7 @@ begin
           InsertForm.PageControl1Change(InsertForm.PageControl1);
 
 
-//          передать код клиента в поиск по клиенту
+//          РїРµСЂРµРґР°С‚СЊ РєРѕРґ РєР»РёРµРЅС‚Р° РІ РїРѕРёСЃРє РїРѕ РєР»РёРµРЅС‚Сѓ
           if (Length(AppTAbleTimek_kl.AsString)=6) and ((Copy(AppTAbleTimek_kl.AsString,2,1)='F') or (Copy(AppTAbleTimek_kl.AsString,2,1)='U')) then
               begin
               FindUnit.client_karman:='';
@@ -6516,7 +6514,7 @@ end;
 
 procedure TAppointmentForm.SunMaskEditChange(Sender: TObject);
 begin
-  if SunMaskEdit.Text='с   :   до   :  ' then
+  if SunMaskEdit.Text='СЃ   :   РґРѕ   :  ' then
      SunMaskEdit.Color:=$00AAAAFF
   else
      SunMaskEdit.Color:=Form1.Panel2.Color;
@@ -6525,7 +6523,7 @@ end;
 
 procedure TAppointmentForm.FriMaskEditChange(Sender: TObject);
 begin
-  if FriMaskEdit.Text='с   :   до   :  ' then
+  if FriMaskEdit.Text='СЃ   :   РґРѕ   :  ' then
      FriMaskEdit.Color:=$00AAAAFF
   else
      FriMaskEdit.Color:=Form1.Panel2.Color;
@@ -6535,7 +6533,7 @@ end;
 
 procedure TAppointmentForm.ThuMaskEditChange(Sender: TObject);
 begin
-  if ThuMaskEdit.Text='с   :   до   :  ' then
+  if ThuMaskEdit.Text='СЃ   :   РґРѕ   :  ' then
      ThuMaskEdit.Color:=$00AAAAFF
   else
      ThuMaskEdit.Color:=Form1.Panel2.Color;
@@ -6545,7 +6543,7 @@ end;
 
 procedure TAppointmentForm.WedMaskEditChange(Sender: TObject);
 begin
-  if WedMaskEdit.Text='с   :   до   :  ' then
+  if WedMaskEdit.Text='СЃ   :   РґРѕ   :  ' then
      WedMaskEdit.Color:=$00AAAAFF
   else
      WedMaskEdit.Color:=Form1.Panel2.Color;
@@ -6560,9 +6558,9 @@ var
   ExcelApp, WorkSheet: Variant;
 
 begin
-  if not IsOLEObjectInstalled('Excel.Application') then //нет Excel
+  if not IsOLEObjectInstalled('Excel.Application') then //РЅРµС‚ Excel
      begin
-     my_messageTime('Внимание!','Microsoft Excel не найден на Вашем компьютере.',clYellow,5000);
+     my_messageTime('Р’РЅРёРјР°РЅРёРµ!','Microsoft Excel РЅРµ РЅР°Р№РґРµРЅ РЅР° Р’Р°С€РµРј РєРѕРјРїСЊСЋС‚РµСЂРµ.',clYellow,5000);
      exit;
      end;
 
@@ -6598,29 +6596,29 @@ ExcelApp.Workbooks[1].WorkSheets[1].Cells.Font.Size:=9;
     Form1.Spr00GR.AsString:='30';
     Form1.Spr00KOD.AsString:=postcode;
     if Form1.Spr00.GoToKey then
-        ExcelApp.Workbooks[1].WorkSheets[1].Cells[1,1]:='Запись на ремонт: '+Form1.Spr00NAIM.AsString;
+        ExcelApp.Workbooks[1].WorkSheets[1].Cells[1,1]:='Р—Р°РїРёСЃСЊ РЅР° СЂРµРјРѕРЅС‚: '+Form1.Spr00NAIM.AsString;
     end
   else
-        ExcelApp.Workbooks[1].WorkSheets[1].Cells[1,1]:='Запись на ремонт';
+        ExcelApp.Workbooks[1].WorkSheets[1].Cells[1,1]:='Р—Р°РїРёСЃСЊ РЅР° СЂРµРјРѕРЅС‚';
 
-  ExcelApp.Workbooks[1].WorkSheets[1].Cells[2,1]:='Дата: '+FormatDateTime('dd MMMM YYYY',dsCalendar1.Date);
+  ExcelApp.Workbooks[1].WorkSheets[1].Cells[2,1]:='Р”Р°С‚Р°: '+FormatDateTime('dd MMMM YYYY',dsCalendar1.Date);
 
 
   i:=4;
-  ExcelApp.Workbooks[1].WorkSheets[1].Cells[i,1]:='Время';
+  ExcelApp.Workbooks[1].WorkSheets[1].Cells[i,1]:='Р’СЂРµРјСЏ';
 
-  ExcelApp.Workbooks[1].WorkSheets[1].Cells[i,2]:='Пост';
+  ExcelApp.Workbooks[1].WorkSheets[1].Cells[i,2]:='РџРѕСЃС‚';
   ExcelApp.Workbooks[1].WorkSheets[1].Range['B'+IntToStr(i),'B'+IntToStr(i)].ColumnWidth :=15;
 
-  ExcelApp.Workbooks[1].WorkSheets[1].Cells[i,3]:='Автомобиль';
+  ExcelApp.Workbooks[1].WorkSheets[1].Cells[i,3]:='РђРІС‚РѕРјРѕР±РёР»СЊ';
   ExcelApp.Workbooks[1].WorkSheets[1].Range['C'+IntToStr(i),'C'+IntToStr(i)].ColumnWidth :=15;
 
-  ExcelApp.Workbooks[1].WorkSheets[1].Cells[i,4]:='Причина обращения клиента / комментарий';
+  ExcelApp.Workbooks[1].WorkSheets[1].Cells[i,4]:='РџСЂРёС‡РёРЅР° РѕР±СЂР°С‰РµРЅРёСЏ РєР»РёРµРЅС‚Р° / РєРѕРјРјРµРЅС‚Р°СЂРёР№';
   ExcelApp.Workbooks[1].WorkSheets[1].Range['D'+IntToStr(i),'D'+IntToStr(i)].ColumnWidth :=45;
 
 
 
-          //рисуем рамку ***************
+  //СЂРёСЃСѓРµРј СЂР°РјРєСѓ ***************
   ExcelApp.Workbooks[1].WorkSheets[1].Range['A'+IntToStr(i),'D'+IntToStr(i)].Borders.Color:=clBlack;
   ExcelApp.Workbooks[1].WorkSheets[1].Range['A'+IntToStr(i),'D'+IntToStr(i)].Borders.Weight:=3; //xlThin
   // ****************************
@@ -6651,16 +6649,16 @@ ExcelApp.Workbooks[1].WorkSheets[1].Cells.Font.Size:=9;
             if trim(AppTableCOMM.AsString)='' then
                 ExcelApp.Workbooks[1].WorkSheets[1].Cells[i,4]:=UnCryptString(AppTableOBR_KL.AsString,key1c,key2c)
             else
-                ExcelApp.Workbooks[1].WorkSheets[1].Cells[i,4]:=UnCryptString(AppTableOBR_KL.AsString,key1c,key2c)+#13+#10+#13+#10+'Комментарий:'+#13+#10+UnCryptString(AppTableCOMM.AsString,key1c,key2c);
+                ExcelApp.Workbooks[1].WorkSheets[1].Cells[i,4]:=UnCryptString(AppTableOBR_KL.AsString,key1c,key2c)+#13+#10+#13+#10+'РљРѕРјРјРµРЅС‚Р°СЂРёР№:'+#13+#10+UnCryptString(AppTableCOMM.AsString,key1c,key2c);
 
 
             ExcelApp.Workbooks[1].WorkSheets[1].Range['A'+IntToStr(i),'E'+IntToStr(i)].WrapText:=True;
 
-           //выравнивание текста
+           //РІС‹СЂР°РІРЅРёРІР°РЅРёРµ С‚РµРєСЃС‚Р°
             ExcelApp.Workbooks[1].WorkSheets[1].Range['A'+IntToStr(i),'D'+IntToStr(i)].VerticalAlignment:=1;//top ;//2 - xlCenter; //3 - bottom
 
 
-          //рисуем рамку ***************
+          //СЂРёСЃСѓРµРј СЂР°РјРєСѓ ***************
             ExcelApp.Workbooks[1].WorkSheets[1].Range['A'+IntToStr(i),'D'+IntToStr(i)].Borders.Color:=clBlack;
             ExcelApp.Workbooks[1].WorkSheets[1].Range['A'+IntToStr(i),'D'+IntToStr(i)].Borders.Weight:=2; //xlThin
            // ****************************
@@ -6673,7 +6671,7 @@ ExcelApp.Workbooks[1].WorkSheets[1].Cells.Font.Size:=9;
          end;
 
 
-     ExcelApp.Visible:=True; ///!!! Открывает Excell
+     ExcelApp.Visible:=True; ///!!! РћС‚РєСЂС‹РІР°РµС‚ Excell
      SetForegroundWindow(ExcelApp.Hwnd);
      ExcelApp.Workbooks[1].Sheets.Item[1].Activate;
      SetWindowPos(ExcelApp.Hwnd,HWND_TOPMOST,0,0,0,0,SWP_NOMOVE+SWP_NOSIZE);
@@ -6689,12 +6687,12 @@ procedure TAppointmentForm.N16Click(Sender: TObject);
 var
    rezult: string;
 begin
-   rezult:=my_vybor('Внимание!','Экспорт по текущему посту.','Экспорт по всем постам.','NULL','NULL',clYellow);
+   rezult:=my_vybor('Р’РЅРёРјР°РЅРёРµ!','Р­РєСЃРїРѕСЂС‚ РїРѕ С‚РµРєСѓС‰РµРјСѓ РїРѕСЃС‚Сѓ.','Р­РєСЃРїРѕСЂС‚ РїРѕ РІСЃРµРј РїРѕСЃС‚Р°Рј.','NULL','NULL',clYellow);
 
-   if rezult='Экспорт по текущему посту.' then
+   if rezult='Р­РєСЃРїРѕСЂС‚ РїРѕ С‚РµРєСѓС‰РµРјСѓ РїРѕСЃС‚Сѓ.' then
       export_proc(AppTablePOSTCODE.AsString)
    else
-   if rezult='Экспорт по всем постам.' then
+   if rezult='Р­РєСЃРїРѕСЂС‚ РїРѕ РІСЃРµРј РїРѕСЃС‚Р°Рј.' then
       export_proc('');
 
 
@@ -6706,12 +6704,12 @@ procedure TAppointmentForm.BitBtn17Click(Sender: TObject);
 var
    rezult: string;
 begin
-   rezult:=my_vybor('Внимание!','Экспорт по текущему посту.','Экспорт по всем постам.','NULL','NULL',clYellow);
+   rezult:=my_vybor('Р’РЅРёРјР°РЅРёРµ!','Р­РєСЃРїРѕСЂС‚ РїРѕ С‚РµРєСѓС‰РµРјСѓ РїРѕСЃС‚Сѓ.','Р­РєСЃРїРѕСЂС‚ РїРѕ РІСЃРµРј РїРѕСЃС‚Р°Рј.','NULL','NULL',clYellow);
 
-   if rezult='Экспорт по текущему посту.' then
+   if rezult='Р­РєСЃРїРѕСЂС‚ РїРѕ С‚РµРєСѓС‰РµРјСѓ РїРѕСЃС‚Сѓ.' then
       export_proc(AppTablePOSTCODE.AsString)
    else
-   if rezult='Экспорт по всем постам.' then
+   if rezult='Р­РєСЃРїРѕСЂС‚ РїРѕ РІСЃРµРј РїРѕСЃС‚Р°Рј.' then
       export_proc('');
 
 end;
@@ -6764,7 +6762,7 @@ begin
      if AllPostsComboBox.ItemIndex=0 then
         begin
         AppTAbleMonth.IndexName:='DATE_APP1';
-        AppTAbleMonth.SetRange(FormatDateTime('YYYYMM',dsCAlendar1.DAte)+'01'+''+'',FormatDateTime('YYYYMM',dsCAlendar1.DAte)+'31'+'"'+'яя');
+        AppTAbleMonth.SetRange(FormatDateTime('YYYYMM',dsCAlendar1.DAte)+'01'+''+'',FormatDateTime('YYYYMM',dsCAlendar1.DAte)+'31'+'"'+'СЏСЏ');
         end
      else
         begin
@@ -6776,7 +6774,7 @@ begin
         if Form1.Spr00.GotoKey then
            begin
            AppTAbleMonth.IndexName:='DATE_APP'; //DTOS(DATE_APP)+POSTCODE+TIME1
-           AppTAbleMonth.SetRange(FormatDateTime('YYYYMM',dsCAlendar1.DAte)+'01'+Form1.Spr00KOD.AsString+'',FormatDateTime('YYYYMM',dsCAlendar1.DAte)+'31'+Form1.Spr00KOD.AsString+'яя');
+           AppTAbleMonth.SetRange(FormatDateTime('YYYYMM',dsCAlendar1.DAte)+'01'+Form1.Spr00KOD.AsString+'',FormatDateTime('YYYYMM',dsCAlendar1.DAte)+'31'+Form1.Spr00KOD.AsString+'СЏСЏ');
            end;
 
 
@@ -6799,7 +6797,7 @@ begin
         begin
         AppTAble.Open;
         AppTAble.IndexName:='DATE_APP1';
-        AppTAble.SetRange(FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+''+'',FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+'"'+'яя');
+        AppTAble.SetRange(FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+''+'',FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+'"'+'СЏСЏ');
         AppTAble.First;
 
         While AppTAble.Eof=FAlse do
@@ -6827,7 +6825,7 @@ begin
            begin
            AppTAble.Open;
            AppTAble.IndexName:='DATE_APP';
-           AppTAble.SetRange(FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+Form1.Spr00KOD.AsString+'',FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+Form1.Spr00KOD.AsString+'яя');
+           AppTAble.SetRange(FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+Form1.Spr00KOD.AsString+'',FormatDateTime('YYYYMMDD',dsCAlendar1.DAte)+Form1.Spr00KOD.AsString+'СЏСЏ');
            AppTAble.First;
 
            While AppTAble.Eof=FAlse do
@@ -6857,7 +6855,8 @@ end;
 
 procedure TAppointmentForm.OrderNumberMaskEditChange(Sender: TObject);
 begin
-   if (Length(Trim(OrderNumberMaskEdit.Text))=9) and (Copy(OrderNumberMaskEdit.Text,4,1)='J') then OpenOrderBitBtn.Enabled:=True
+   if (Length(Trim(OrderNumberMaskEdit.Text))=9) and (Copy(OrderNumberMaskEdit.Text,4,1)='J') then 
+       OpenOrderBitBtn.Enabled:=True
    else
        OpenOrderBitBtn.Enabled:=FAlse;
 
@@ -6872,7 +6871,7 @@ begin
                AppointmentForm.Close;
                end
             else
-               my_messageTime('Внимание!','Документ не найден.',clYellow,3000);
+               my_messageTime('Р’РЅРёРјР°РЅРёРµ!','Р”РѕРєСѓРјРµРЅС‚ РЅРµ РЅР°Р№РґРµРЅ.',clYellow,3000);
 
 end;
 
@@ -6886,7 +6885,7 @@ begin
                AppointmentForm.Close;
                end
             else
-               my_messageTime('Внимание!','Документ не найден.',clYellow,3000);
+               my_messageTime('Р’РЅРёРјР°РЅРёРµ!','Р”РѕРєСѓРјРµРЅС‚ РЅРµ РЅР°Р№РґРµРЅ.',clYellow,3000);
 
 end;
 
@@ -6899,7 +6898,7 @@ begin
                AppointmentForm.Close;
                end
             else
-               my_messageTime('Внимание!','Документ не найден.',clYellow,3000);
+               my_messageTime('Р’РЅРёРјР°РЅРёРµ!','Р”РѕРєСѓРјРµРЅС‚ РЅРµ РЅР°Р№РґРµРЅ.',clYellow,3000);
 
 end;
 
@@ -6909,7 +6908,7 @@ begin
 
   if (AppTAbleTimeN_ZAJ.ASString<>'XXX') and (AppTAbleTimeN_ZAJ.ASString<>'') then
       begin
-      N24.Caption:='Переход в созданную заявку на ремонт -> '+AppTAbleTimeN_ZAJ.ASString;
+      N24.Caption:='РџРµСЂРµС…РѕРґ РІ СЃРѕР·РґР°РЅРЅСѓСЋ Р·Р°СЏРІРєСѓ РЅР° СЂРµРјРѕРЅС‚ -> '+AppTAbleTimeN_ZAJ.ASString;
       N24.Visible:=True;
       end;
 end;
