@@ -574,7 +574,7 @@ type
   private
     { Private declarations }
 
-    //ќна нужна, что бы дл€ формы создавалась иконка в трее
+    //for create icon in Windows tray
     procedure CreateParams(var Params: TCreateParams); override;
 
   public
